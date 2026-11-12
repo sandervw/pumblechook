@@ -15,4 +15,13 @@ __pycache__/
 .ruff_cache/
 .pytest_cache/
 
-# Build output and tool folders: added at kickoff
+# Style reference images: copyrighted book art, local only
+docs/reference/
+
+# Build output and tool folders
+node_modules/
+dist/
+.astro/
+.wrangler/
+playwright-report/
+test-results/

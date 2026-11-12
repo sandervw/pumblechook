@@ -20,9 +20,9 @@ body:
     id: environment
     attributes:
       label: Where it happened
-      description: Browser, device, OS, or version.
+      description: Browser, device, and screen size.
   - type: textarea
     id: input
     attributes:
-      label: Input or settings
-      description: Anything needed to reproduce it, such as settings, a seed, or a file.
+      label: Settings
+      description: Anything needed to reproduce it, such as reduced motion, scripts off, or a screen reader.
