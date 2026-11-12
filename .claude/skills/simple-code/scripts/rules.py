@@ -48,6 +48,7 @@ SKIPPED_FOLDERS = {
 OTHER_CODE_SUFFIXES = {
     ".c", ".h", ".cc", ".cpp", ".hpp", ".rs", ".go", ".java", ".kt",
     ".cs", ".swift", ".rb", ".lua", ".sh", ".sql", ".zig", ".dart",
+    ".astro",
 }
 RUFF_CONFIG = Path(__file__).resolve().parent.parent / "ruff.toml"
 WORD_PATTERN = re.compile(r"[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+")

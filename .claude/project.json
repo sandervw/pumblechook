@@ -1,7 +1,7 @@
 {
   "reviews": {
     "codeSuffixes": [
-      ".py", ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs",
+      ".py", ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".astro",
       ".c", ".h", ".cc", ".cpp", ".hpp", ".rs", ".go", ".java", ".kt",
       ".cs", ".swift", ".rb", ".lua", ".sh", ".sql", ".zig", ".dart"
     ],
@@ -9,15 +9,22 @@
       ".github/",
       ".claude/hooks/",
       ".claude/settings.json",
-      ".claude/project.json"
+      ".claude/project.json",
+      "wrangler.jsonc",
+      "public/_headers"
     ]
   },
   "blackbox": {
-    "readablePaths": ["docs/use-cases", "tests/blackbox"],
+    "readablePaths": ["docs/use-cases", "docs/content.md", "tests/blackbox"],
     "specFolder": "tests/blackbox",
-    "testCommands": [],
-    "startCommands": [],
-    "safeFlags": [],
+    "testCommands": [["npx", "playwright", "test"]],
+    "startCommands": [["npm", "run", "build"], ["npm", "run", "preview"]],
+    "safeFlags": [
+      "--project=(local|live)",
+      "--reporter=(list|line|dot)",
+      "--workers=\\d+",
+      "--headed"
+    ],
     "allowedTools": [],
     "navigateTools": [],
     "allowedHosts": ["localhost", "127.0.0.1"],

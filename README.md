@@ -1,45 +1,40 @@
-# Project template
+# Pumblechook
 
-A starting point for any project built with code. Languages, frameworks, services, and folder layout are decided per project in a planning session.
+A one-page portfolio painted like a picture-book collage: a deep-sea diver's dream with one central sea creature and a project on each of five arms.
 
-## Start a project
+**[pumblechook.com](https://pumblechook.com)**
+
+## What it shows
+
+Five projects, each with a logline and a link to its live site, plus a link to its repository when that is public. The owner's name, bio, and profile links sit inside the picture.
+
+## How it is built
+
+- [Astro](https://astro.build/) prints the page as static HTML.
+- [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/) serves it.
+- The scene is drawn and animated in the browser; every link works with scripts off and with motion off.
+
+## Develop
+
+Needs Node 24 and Python 3.10 or newer.
 
 ```bash
-gh repo create <name> --template sandervw/project-template --private --clone
+npm ci
+npm run dev
 ```
 
-Then open the new folder in Claude Code and run `/kickoff`. The CTO agent walks you through the idea and every decision, one question at a time, with researched options and tradeoffs, then fills in the docs, tooling, and backlog.
+| Task | Command |
+|---|---|
+| Build | `npm run build` |
+| Black-box tests | `npx playwright test` |
+| Integration tests | `npm run test:integration` |
+| Boundary check | `npm run boundaries` |
+| Simple-code checks | `python .claude/skills/simple-code/scripts/check_code.py .` |
 
-Needs Python 3.10 or newer (hooks and checks), the GitHub CLI, and Claude Code. `python -m pip install ruff` for Python projects.
+## Docs
 
-## What every project gets
-
-- **Always a repo, always agent-built.** You are the CEO; a CTO agent plans, builds, reviews, and merges through PRs. `CLAUDE.md` is its manual; `/handoff` its running notes.
-- **Domain-driven design.** A pure functional core split into bounded contexts, adapter shells with no business rules, a glossary, and a machine-checked boundary rule.
-- **Simple code.** Seven practices and hard house rules (comments of 12 words or fewer, full-word names, files under 300 lines, docs under 700 words), checked on every edit and in CI.
-- **Black-box testing first.** A tester agent that cannot see the code writes specs from user-side use cases. Integration tests come second; unit tests only where nothing else can observe.
-- **Three reviewers.** Simplicity, architecture, and security, with a hook that blocks merging until they pass on the latest commit.
-- **Current docs, no history.** Docs describe the design as it is now; tradeoffs live in research briefs.
-
-## What kickoff decides
-
-The stack, the parts, the black-box surface and its harness, storage, services, environments, deploys, CI steps, engineer agents, MCP servers, and language packs for the checker.
-
-## Layout
-
-```
-CLAUDE.md                     CTO manual (placeholders filled at kickoff)
-.claude/
-  project.json                black-box and merge-gate settings for the hooks
-  settings.json               permissions and hooks
-  agents/                     blackbox-tester, three reviewers; engineers added at kickoff
-  hooks/                      merge gate, doc trim before commit, black-box tester isolation
-  skills/kickoff/             planning session, question agenda, engineer agent template
-  skills/handoff/             current state and next work, loaded with /handoff
-  skills/simple-code/         rules, examples, checker, Python and TypeScript packs
-docs/
-  vision.md  glossary.md  architecture.md  ceo-todo.md
-  use-cases/                  black-box test script
-  research/                   tradeoff briefs
-.github/                      CI, issue and PR templates, dependabot
-```
+- [Vision](docs/vision.md)
+- [Architecture](docs/architecture.md)
+- [Glossary](docs/glossary.md)
+- [Content sheet](docs/content.md)
+- [Use cases](docs/use-cases/README.md)
