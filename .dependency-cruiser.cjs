@@ -1,4 +1,4 @@
-// Boundary rules from docs/architecture.md section 1.
+/** Boundary rules from docs/architecture.md section 1. */
 module.exports = {
   forbidden: [
     {
@@ -9,11 +9,25 @@ module.exports = {
       to: { pathNot: "^core/" },
     },
     {
+      name: "contexts-stay-apart",
+      severity: "error",
+      comment: "A context imports no other context.",
+      from: { path: "^core/([^/]+)/" },
+      to: { path: "^core/", pathNot: "^core/$1/" },
+    },
+    {
       name: "shells-use-the-entry-point",
       severity: "error",
       comment: "Shells import a context only through its index.ts.",
       from: { pathNot: "^core/" },
       to: { path: "^core/[^/]+/", pathNot: "^core/[^/]+/index\\.ts$" },
+    },
+    {
+      name: "scene-imports-no-core",
+      severity: "error",
+      comment: "Scene scripts run in the browser without core.",
+      from: { path: "^site/scene/" },
+      to: { path: "^core/" },
     },
     {
       name: "no-circular",

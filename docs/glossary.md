@@ -11,6 +11,7 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Repository link:** the link to a project's source code, present only when the repository is public.
 - **Owner's mark:** the owner's name, one-line bio, and profile links.
 - **Profile link:** a link to the owner's GitHub or LinkedIn profile.
+- **Broken rule:** one way the content fails a portfolio rule, naming the bad value.
 - **Content sheet:** `docs/content.md`, the CEO-approved words and links.
 
 ## Scene (site shell)

@@ -1,6 +1,6 @@
 # Architecture
 
-Terms follow [the glossary](glossary.md). Sections 1 and 6 are binding; change them in the same PR as the code that needs it. The boundary check enforces them.
+Terms follow [the glossary](glossary.md). Sections 1 and 6 are binding; change them in the same PR as the code that needs it.
 
 ## 1. Contexts, shells, and boundaries
 
@@ -12,16 +12,16 @@ A functional core with adapter shells.
 
 | Upstream | Downstream | What crosses |
 |---|---|---|
-| Portfolio | `site/` | `parsePortfolio` and the `Portfolio`, `Project`, and `OwnerMark` types, from `core/portfolio/index.ts` |
+| Portfolio | `site/` | `parsePortfolio` and the `Portfolio`, `Project`, `OwnerMark`, and `BrokenRule` types, from `core/portfolio/index.ts` |
 
-No other context imports another. A shell calls contexts in turn and passes plain values; it makes no rule of its own. A new arrow or a new context changes this section.
+A shell calls contexts in turn and passes plain values; it makes no rule of its own. A new arrow or a new context changes this section.
 
 | Shell | Runs in | Imports | Does |
 |---|---|---|---|
 | `site/` | Node, at build time | Astro, core | Parses the content through core and prints the page as static HTML with both compositions |
 | `site/scene/` | The visitor's browser | Browser APIs | Draws the pieces and runs the motion |
 
-**Rules.** dependency-cruiser, configured in `.dependency-cruiser.cjs`, run with `npm run boundaries`. Core imports nothing outside `core/` and no package, and never touches I/O, the clock, randomness, or global state. Shells import core only through its entry point. The check reads `.ts` files; the architecture reviewer holds `.astro` imports to the same rule. No `utils`, `helpers`, `manager`, `common`, or `data` modules.
+**Rules.** dependency-cruiser, configured in `.dependency-cruiser.cjs` and run with `npm run boundaries`, enforces the imports: core imports nothing outside `core/` and no package, a context imports no other context, shells import core only through its entry point, and `site/scene/` imports no core. It reads `.ts` files; the architecture reviewer holds `.astro` imports to the same rules. The simple-code lint keeps core away from I/O, the clock, randomness, and global state. No `utils`, `helpers`, `manager`, `common`, or `data` modules.
 
 ## 2. Data flows
 
@@ -33,16 +33,16 @@ No other context imports another. A shell calls contexts in turn and passes plai
 
 ## 3. Domain model
 
-- **Portfolio:** an owner's mark and an ordered list of uniquely named projects. The order is the arm order and the keyboard order.
+- **Portfolio:** an owner's mark and an ordered list of exactly five uniquely named projects, one per arm. The order is the arm order and the keyboard order.
 - **Project:** a name, a logline of one to 25 words, a live site link, and an optional repository link.
 - **OwnerMark:** a name, a one-line bio, and profile links.
 - Every link is an absolute `https` URL.
 
-`parsePortfolio` returns a `Portfolio` or the list of broken rules.
+`parsePortfolio` returns a `Portfolio` or a list of `BrokenRule`.
 
 ## 4. Storage
 
-No database and no visitor data. Words and art are files in git. Style reference images stay in `docs/reference/`, outside git.
+No database and no visitor data. Words and art are files in git.
 
 ## 5. Interfaces
 

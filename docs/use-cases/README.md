@@ -6,7 +6,7 @@ Each use case reads: `**UC-NN Title.** Steps: ... Expected: ...`
 
 Actors: **Visitor** (anyone with a browser; no account, no sign-in).
 
-Words used here: the **scene** is the whole picture; the **creature** is its central sea animal; an **arm** is one of its limbs; **reaching an arm** means pointing at it with a mouse, tapping it, or moving keyboard focus to it. A **desktop window** is 1280 by 800; a **phone screen** is 390 by 844.
+Words used here: the **scene** is the whole picture; the **creature** is its central sea animal; an **arm** is one of its limbs; a **dweller** is any smaller animal in the scene; **reaching an arm** means pointing at it with a mouse, tapping it, or moving keyboard focus to it. A **desktop window** is 1280 by 800; a **phone screen** is 390 by 844.
 
 | Area | File | UC IDs |
 |---|---|---|
