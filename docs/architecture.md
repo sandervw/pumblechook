@@ -21,7 +21,7 @@ A shell calls contexts in turn and passes plain values; it makes no rule of its 
 | `site/` | Node, at build time | Astro, core | Parses the content through core and prints the page as static HTML with both compositions |
 | `site/scene/` | The visitor's browser | Browser APIs | Draws the pieces and runs the motion |
 
-**Rules.** dependency-cruiser, configured in `.dependency-cruiser.cjs` and run with `npm run boundaries`, enforces the imports: core imports nothing outside `core/` and no package, a context imports no other context, shells import core only through its entry point, and `site/scene/` imports no core. It reads `.ts` files; the architecture reviewer holds `.astro` imports to the same rules. The simple-code lint keeps core away from I/O, the clock, randomness, and global state. No `utils`, `helpers`, `manager`, `common`, or `data` modules.
+**Rules.** dependency-cruiser, configured in `.dependency-cruiser.cjs` and run with `npm run boundaries`, enforces the imports: core imports nothing outside `core/` and no package, a context imports no other context, shells import core only through its entry point, and `site/scene/` imports no core. It reads `.ts` files; the architecture reviewer holds `.astro` imports to the same rules. The `core/` block of `.claude/skills/simple-code/eslint.config.mjs` keeps core away from I/O, the clock, randomness, and global state. No `utils`, `helpers`, `manager`, `common`, or `data` modules.
 
 ## 2. Data flows
 
