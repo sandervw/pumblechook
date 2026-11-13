@@ -37,7 +37,7 @@ Astro builds static files; a Cloudflare Worker with static assets serves them; a
 **Astro**
 
 - A fully static Astro site needs no adapter on Cloudflare: build, then `wrangler deploy` with `assets.directory` set to `./dist`. [Astro deploy guide](https://docs.astro.build/en/guides/deploy/cloudflare/).
-- The simple-code checker covers `.ts` fully; `.astro` templates get the file-length check only, so logic stays in `.ts` files.
+- The simple-code checker covers `.ts` and `.astro` files; logic stays in `.ts` files.
 - The owner's Wordleaves project already uses Astro.
 
 **Workers static assets**

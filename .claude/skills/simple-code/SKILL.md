@@ -43,7 +43,7 @@ House rules beat practices. Between practices, keep the interface small (3) and 
 
 ## Language packs
 
-The checker fully covers Python (with `ruff.toml`) and TypeScript or JavaScript (with `eslint.config.mjs`). Other code files get only the file-length warning, and `simplicity-reviewer` judges the rest. When a project adopts another language, add a pack at kickoff:
+The checker fully covers Python (with `ruff.toml`), TypeScript or JavaScript (with `eslint.config.mjs`), and Astro components (with `eslint.config.mjs` and `scripts/astro_rules.py`). Other code files get only the file-length warning, and `simplicity-reviewer` judges the rest. When a project adopts another language, add a pack at kickoff:
 
 1. A linter config in this folder mapping practices 2, 4, 5, 6, and 7 to that language's linter, as `ruff.toml` does.
 2. A `scripts/<language>_rules.py` with comment-length, doc-comment, naming, and core-purity checks, shaped like `typescript_rules.py`, dispatched from `check_file` in `check_code.py`.

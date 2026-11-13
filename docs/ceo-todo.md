@@ -13,7 +13,8 @@ Things only the CEO can do: accounts, logins, keys, payments, approvals. Check i
 
 ## After the scaffold merges
 
-- [ ] In the Cloudflare dashboard, open Workers & Pages, select the `pumblechook` Worker, go to Settings, then Builds, and connect the `sandervw/pumblechook` GitHub repository. Turn on builds for Preview branches.
+- [ ] In the Cloudflare dashboard, open Workers & Pages, select Create application, then GitHub, and import the `sandervw/pumblechook` repository. Name the Worker `pumblechook`, set the build command to `npm run build`, and deploy.
+- [ ] Open the `pumblechook` Worker, go to Settings, then Builds, and turn on builds for Preview branches.
 
 ## During the build
 

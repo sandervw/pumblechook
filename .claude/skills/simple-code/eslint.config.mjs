@@ -1,5 +1,6 @@
-// Simple-code lint rules for TypeScript; numbers refer to SKILL.md.
+// Simple-code lint rules for TypeScript and Astro; numbers refer to SKILL.md.
 import { defineConfig } from "eslint/config";
+import astro from "eslint-plugin-astro";
 import typescriptEslint from "typescript-eslint";
 
 // Keep in sync with BANNED_WORDS in scripts/rules.py.
@@ -43,8 +44,28 @@ const CLOCK_READ = {
   message: "Core code reads the clock (1); pass the time in.",
 };
 
+const SIMPLE_RULES = {
+  complexity: ["error", 8],
+  "max-depth": ["error", 3],
+  "max-params": ["error", 4],
+  "no-else-return": ["error", { allowElseIf: false }],
+  "no-empty": ["error", { allowEmptyCatch: false }],
+  "id-length": ["error", { min: 3, exceptions: ["id", "_"], properties: "never" }],
+  "@typescript-eslint/naming-convention": [
+    "error",
+    {
+      selector: ["variableLike", "class", "classMethod", "typeLike"],
+      format: null,
+      custom: { regex: bannedNamePattern, match: false },
+    },
+  ],
+  "no-restricted-syntax": ["error", MODULE_STATE, BOOLEAN_FLAG, BOOLEAN_DEFAULT],
+};
+
 export default defineConfig(
   { ignores: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/*.d.ts"] },
+  // Parses frontmatter and splits each script into its own file.
+  ...astro.configs["flat/base"],
   {
     files: ["**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}"],
     languageOptions: {
@@ -52,23 +73,12 @@ export default defineConfig(
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
     plugins: { "@typescript-eslint": typescriptEslint.plugin },
-    rules: {
-      complexity: ["error", 8],
-      "max-depth": ["error", 3],
-      "max-params": ["error", 4],
-      "no-else-return": ["error", { allowElseIf: false }],
-      "no-empty": ["error", { allowEmptyCatch: false }],
-      "id-length": ["error", { min: 3, exceptions: ["id", "_"], properties: "never" }],
-      "@typescript-eslint/naming-convention": [
-        "error",
-        {
-          selector: ["variableLike", "class", "classMethod", "typeLike"],
-          format: null,
-          custom: { regex: bannedNamePattern, match: false },
-        },
-      ],
-      "no-restricted-syntax": ["error", MODULE_STATE, BOOLEAN_FLAG, BOOLEAN_DEFAULT],
-    },
+    rules: SIMPLE_RULES,
+  },
+  {
+    files: ["**/*.astro"],
+    plugins: { "@typescript-eslint": typescriptEslint.plugin },
+    rules: SIMPLE_RULES,
   },
   {
     files: ["**/core/**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}"],

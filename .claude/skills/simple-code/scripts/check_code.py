@@ -6,8 +6,8 @@ import os
 import sys
 from pathlib import Path
 
+from astro_rules import ASTRO_SUFFIXES, check_astro
 from rules import (
-    MAX_CODE_LINES,
     MAX_MARKDOWN_WORDS,
     OTHER_CODE_SUFFIXES,
     SKIPPED_FOLDERS,
@@ -17,12 +17,14 @@ from rules import (
     check_core_purity,
     check_docstring_length,
     check_docstring_presence,
+    check_file_length,
     check_names,
     run_ruff,
 )
 from typescript_rules import TYPESCRIPT_SUFFIXES, check_typescript, run_eslint
 
-CHECKED_SUFFIXES = {".py", ".md"} | TYPESCRIPT_SUFFIXES | OTHER_CODE_SUFFIXES
+LINTED_SUFFIXES = TYPESCRIPT_SUFFIXES | ASTRO_SUFFIXES
+CHECKED_SUFFIXES = {".py", ".md"} | LINTED_SUFFIXES | OTHER_CODE_SUFFIXES
 
 
 def check_python(path: str, source: str) -> list[Finding]:
@@ -35,11 +37,7 @@ def check_python(path: str, source: str) -> list[Finding]:
     findings = check_comment_length(path, source)
     for check in (check_docstring_length, check_docstring_presence, check_names, check_core_purity):
         findings += check(path, tree)
-    line_count = len(source.splitlines())
-    if line_count > MAX_CODE_LINES:
-        message = f"file has {line_count} lines; consider splitting past {MAX_CODE_LINES}"
-        findings.append(Finding(path, 1, "file-length", message, Severity.WARN))
-    return findings + run_ruff(path)
+    return findings + check_file_length(path, source) + run_ruff(path)
 
 
 def check_markdown(path: str, text: str) -> list[Finding]:
@@ -53,15 +51,6 @@ def check_markdown(path: str, text: str) -> list[Finding]:
     return [Finding(path, 1, "document-length", message, Severity.WARN)]
 
 
-def check_other_code(path: str, text: str) -> list[Finding]:
-    """Warn when a file in a language without a pack runs long."""
-    line_count = len(text.splitlines())
-    if line_count <= MAX_CODE_LINES:
-        return []
-    message = f"file has {line_count} lines; consider splitting past {MAX_CODE_LINES}"
-    return [Finding(path, 1, "file-length", message, Severity.WARN)]
-
-
 def check_file(path: Path) -> list[Finding]:
     """Dispatch one file to the checks for its type."""
     text = path.read_text(encoding="utf-8")
@@ -71,7 +60,9 @@ def check_file(path: Path) -> list[Finding]:
         return check_markdown(str(path), text)
     if path.suffix in TYPESCRIPT_SUFFIXES:
         return check_typescript(str(path), text)
-    return check_other_code(str(path), text)
+    if path.suffix in ASTRO_SUFFIXES:
+        return check_astro(str(path), text)
+    return check_file_length(str(path), text)
 
 
 def collect_files(targets: list[str]) -> list[Path]:
@@ -89,7 +80,7 @@ def collect_files(targets: list[str]) -> list[Path]:
 
 def check_files(paths: list[Path]) -> list[Finding]:
     """Run every check on these files, with ESLint batched."""
-    findings = run_eslint([str(path) for path in paths if path.suffix in TYPESCRIPT_SUFFIXES])
+    findings = run_eslint([str(path) for path in paths if path.suffix in LINTED_SUFFIXES])
     for path in paths:
         findings += check_file(path)
     return findings
