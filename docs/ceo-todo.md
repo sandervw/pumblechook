@@ -4,12 +4,12 @@ Things only the CEO can do: accounts, logins, keys, payments, approvals. Check i
 
 ## Before the mockups
 
-- [ ] Save the "Squids Will Be Squids" screenshots into `docs/reference/`.
+- [X] Save the "Squids Will Be Squids" screenshots into `docs/reference/`.
 
 ## Before the words go on the page
 
-- [ ] Edit the five loglines in `docs/content.md` until they read right.
-- [ ] Fill in your bio and LinkedIn link in `docs/content.md`, and check your name.
+- [X] Edit the five loglines in `docs/content.md` until they read right.
+- [X] Fill in your bio and LinkedIn link in `docs/content.md`, and check your name.
 
 ## After the scaffold merges
 
