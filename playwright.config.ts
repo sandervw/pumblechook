@@ -1,9 +1,9 @@
-// Black-box tests: local runs the built site, live runs production.
 import { defineConfig } from "@playwright/test";
 
 const LOCAL_ADDRESS = "http://localhost:8787";
 const LIVE_SPECS = "**/*.live.spec.ts";
 
+/** Black-box tests: local runs the built site, live runs production. */
 export default defineConfig({
   testDir: "tests/blackbox",
   forbidOnly: Boolean(process.env.CI),

@@ -15,7 +15,7 @@ QUOTES = {"'", '"', "`"}
 EXPORT_PATTERN = re.compile(
     r"export\s+(default\s+)?(declare\s+)?(async\s+)?(abstract\s+)?(function|class)\b"
     r"|export\s+(const|let)\s+\w+\s*(:[^=]+)?=\s*(async\s+)?(function\b|\(|<|\w+\s*=>)"
-    r"|export\s+default\s+\{"
+    r"|export\s+default\b"
 )
 
 
@@ -93,7 +93,7 @@ def has_jsdoc_above(lines: list[str], index: int) -> bool:
 
 
 def check_jsdoc_presence(path: str, source: str) -> list[Finding]:
-    """Fail exported functions, classes, and default objects without JSDoc."""
+    """Fail exported functions, classes, and defaults without JSDoc."""
     findings = []
     lines = source.splitlines()
     for index, line in enumerate(lines):

@@ -1,4 +1,4 @@
-// Simple-code lint rules for TypeScript and Astro; numbers refer to SKILL.md.
+// Rule numbers in the messages refer to SKILL.md.
 import { defineConfig } from "eslint/config";
 import astro from "eslint-plugin-astro";
 import typescriptEslint from "typescript-eslint";
@@ -62,6 +62,7 @@ const SIMPLE_RULES = {
   "no-restricted-syntax": ["error", MODULE_STATE, BOOLEAN_FLAG, BOOLEAN_DEFAULT],
 };
 
+/** Simple-code lint rules for TypeScript and Astro. */
 export default defineConfig(
   { ignores: ["**/node_modules/**", "**/dist/**", "**/build/**", "**/*.d.ts"] },
   // Parses frontmatter and splits each script into its own file.
