@@ -5,38 +5,38 @@ The exact words and links the scene carries. The CEO signs this file off; the si
 ## Owner's mark
 
 - **Name:** Sander VanWilligen
-- **Bio:** [one line, from the CEO]
+- **Bio:** The squeaky wheel gets the cheese.
 - **GitHub:** https://github.com/sandervw
-- **LinkedIn:** [profile link, from the CEO]
+- **LinkedIn:** https://www.linkedin.com/in/sandervw/
 
 ## Projects
 
 ### Gutenberg Fingerprint
 
-- **Logline:** A nightly pipeline that reads Project Gutenberg's science fiction, fantasy, and horror, measures fifteen habits of style in every book, and publishes the scores.
+- **Logline:** Project Gutenberg's science fiction, fantasy, and horror: scraped, pruned, parsed, measured, stacked, and set out for display.
 - **Live site:** https://gufime.com
 - **Repository:** https://github.com/sandervw/Gutenberg-Fingerprint
 
 ### Table Tapes
 
-- **Logline:** Dungeon synth for your table: pick a mood, press play, and get a full looping track composed in your browser for the scene at hand.
+- **Logline:** Dungeon synth for D&D: pick a mood, press play, press shuffle, press repeat, press save, press whatsoever you like - I'm not your master.
 - **Live site:** https://tabletapes.com
 - **Repository:** none (private)
 
 ### Dying Skies
 
-- **Logline:** An infinite universe of generated skies. Click a falling star to save its world; every star you miss is a sky nobody will ever see.
+- **Logline:** An infinite universe of falling stars. Every star that is not clicked, dies.
 - **Live site:** https://dyingskies.com
 - **Repository:** https://github.com/sandervw/dying-skies
 
 ### Wordleaves
 
-- **Logline:** A quiet reading room for my stories and the invented worlds they belong to, built on a deliberately sparse set of code laws.
+- **Logline:** My fiction lands and stories. There's a leaf for you to browse.
 - **Live site:** https://wordleaves.com
 - **Repository:** none (private)
 
 ### Fiction Fingerprint
 
-- **Logline:** Measures my own prose against ten fantasy and weird-fiction authors I admire, across fifteen habits of style, to see how close I sit to them.
+- **Logline:** Me vs. ten of the finest fantasy and weird-fiction authors to ever bless our atmosphere with their literary exhalations.
 - **Live site:** https://lucencies.com
 - **Repository:** https://github.com/sandervw/Fiction-Fingerprint

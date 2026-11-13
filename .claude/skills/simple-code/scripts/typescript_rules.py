@@ -7,7 +7,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from rules import MAX_CODE_LINES, MAX_COMMENT_WORDS, Finding, Severity
+from rules import MAX_COMMENT_WORDS, Finding, Severity, check_file_length
 
 TYPESCRIPT_SUFFIXES = {".ts", ".tsx", ".mts", ".cts", ".js", ".jsx", ".mjs", ".cjs"}
 ESLINT_CONFIG = Path(__file__).resolve().parent.parent / "eslint.config.mjs"
@@ -15,7 +15,7 @@ QUOTES = {"'", '"', "`"}
 EXPORT_PATTERN = re.compile(
     r"export\s+(default\s+)?(declare\s+)?(async\s+)?(abstract\s+)?(function|class)\b"
     r"|export\s+(const|let)\s+\w+\s*(:[^=]+)?=\s*(async\s+)?(function\b|\(|<|\w+\s*=>)"
-    r"|export\s+default\s+\{"
+    r"|export\s+default\b"
 )
 
 
@@ -93,7 +93,7 @@ def has_jsdoc_above(lines: list[str], index: int) -> bool:
 
 
 def check_jsdoc_presence(path: str, source: str) -> list[Finding]:
-    """Fail exported functions, classes, and default objects without JSDoc."""
+    """Fail exported functions, classes, and defaults without JSDoc."""
     findings = []
     lines = source.splitlines()
     for index, line in enumerate(lines):
@@ -160,9 +160,4 @@ def check_typescript(path: str, source: str) -> list[Finding]:
     """Run every TypeScript check except ESLint on one file's source."""
     if path.endswith(".d.ts"):
         return []
-    findings = check_comment_length(path, source) + check_jsdoc_presence(path, source)
-    line_count = len(source.splitlines())
-    if line_count > MAX_CODE_LINES:
-        message = f"file has {line_count} lines; consider splitting past {MAX_CODE_LINES}"
-        findings.append(Finding(path, 1, "file-length", message, Severity.WARN))
-    return findings
+    return check_comment_length(path, source) + check_jsdoc_presence(path, source) + check_file_length(path, source)

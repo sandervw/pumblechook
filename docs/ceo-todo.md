@@ -4,16 +4,17 @@ Things only the CEO can do: accounts, logins, keys, payments, approvals. Check i
 
 ## Before the mockups
 
-- [ ] Save the "Squids Will Be Squids" screenshots into `docs/reference/`.
+- [X] Save the "Squids Will Be Squids" screenshots into `docs/reference/`.
 
 ## Before the words go on the page
 
-- [ ] Edit the five loglines in `docs/content.md` until they read right.
-- [ ] Fill in your bio and LinkedIn link in `docs/content.md`, and check your name.
+- [X] Edit the five loglines in `docs/content.md` until they read right.
+- [X] Fill in your bio and LinkedIn link in `docs/content.md`, and check your name.
 
 ## After the scaffold merges
 
-- [ ] In the Cloudflare dashboard, open Workers & Pages, select the `pumblechook` Worker, go to Settings, then Builds, and connect the `sandervw/pumblechook` GitHub repository. Turn on builds for Preview branches.
+- [ ] In the Cloudflare dashboard, open Workers & Pages, select Create application, then GitHub, and import the `sandervw/pumblechook` repository. Name the Worker `pumblechook`, set the build command to `npm run build`, and deploy.
+- [ ] Open the `pumblechook` Worker, go to Settings, then Builds, and turn on builds for Preview branches.
 
 ## During the build
 

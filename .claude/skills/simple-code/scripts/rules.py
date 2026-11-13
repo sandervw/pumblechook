@@ -43,12 +43,11 @@ CORE_FORBIDDEN_METHODS = {"now", "today", "utcnow"}
 SKIPPED_FOLDERS = {
     ".git", ".venv", "venv", "node_modules", "__pycache__", "dist",
     "build", "target", "coverage", "playwright-report", "test-results",
-    "vendor", "worktrees",
+    "vendor", "worktrees", ".astro", ".wrangler",
 }
 OTHER_CODE_SUFFIXES = {
     ".c", ".h", ".cc", ".cpp", ".hpp", ".rs", ".go", ".java", ".kt",
     ".cs", ".swift", ".rb", ".lua", ".sh", ".sql", ".zig", ".dart",
-    ".astro",
 }
 RUFF_CONFIG = Path(__file__).resolve().parent.parent / "ruff.toml"
 WORD_PATTERN = re.compile(r"[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+")
@@ -75,6 +74,15 @@ class Finding:
         """Format the finding as one report line."""
         location = f"{self.path}:{self.line}"
         return f"{self.severity.value} {location} [{self.rule}] {self.message}"
+
+
+def check_file_length(path: str, text: str) -> list[Finding]:
+    """Warn when a code file runs past the line limit."""
+    line_count = len(text.splitlines())
+    if line_count <= MAX_CODE_LINES:
+        return []
+    message = f"file has {line_count} lines; consider splitting past {MAX_CODE_LINES}"
+    return [Finding(path, 1, "file-length", message, Severity.WARN)]
 
 
 def check_comment_length(path: str, source: str) -> list[Finding]:

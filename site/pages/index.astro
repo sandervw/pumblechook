@@ -1,0 +1,22 @@
+---
+import type { Project } from "../../core/portfolio/index.ts";
+
+const projects: readonly Project[] = [];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pumblechook</title>
+  </head>
+  <body>
+    <main>
+      <h1>Pumblechook</h1>
+      <ul>
+        {projects.map((project) => <li>{project.name}</li>)}
+      </ul>
+    </main>
+  </body>
+</html>
