@@ -21,7 +21,9 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Creature:** the central sea animal.
 - **Arm:** one limb of the creature; each arm carries one project.
 - **Whale's rib:** the bone that carries the owner's mark.
+- **Limb:** the tapered band that an arm and the whale's rib share as a shape.
 - **Dweller:** any smaller animal in the scene.
+- **Swarm:** the fish, the scene's dwellers, which keep to one patch of water.
 - **Piece:** one visible element of the scene.
 - **Texture sheet:** an image of painted surface that pieces are cut from.
 - **Composition:** one arrangement of the scene's pieces. **Wide** suits desktops; **Tall** suits phones.
