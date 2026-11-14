@@ -11,13 +11,14 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 
 - The scaffold is built. Astro prints one bare page from `site/`, and `core/portfolio/index.ts` holds the portfolio types. CI runs every command in `CLAUDE.md`.
 - Five `mvp` issues hold the remaining work: 2 to 6.
-- No `pumblechook` Worker exists in Cloudflare until the CEO imports the repository (see `docs/ceo-todo.md`).
+- The `pumblechook` Worker exists in Cloudflare, with Preview builds on.
+- The wide layout is signed off: a kraken in the upper-left corner, with each project's text running along an arm. See `mockups/wide-wireframe.png` and `mockups/image-spec.md`. The painted look is still open.
 - `docs/content.md` is signed off, and the reference screenshots are in `docs/reference/`.
 - Image generation spend is approved up to $10, for the mockup issue only.
 
 ## Next
 
-1. Issues 2 and 3 in one batch: the art-method mockups, and the words and links.
+1. Issues 2 and 3 in one batch on the `mockups-and-words` branch: three art-method mockups built from the image spec, and the words and links.
 2. Issues 4 and 5, the wide and tall scenes. Each waits on its branch for the CEO's eye.
 3. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
 
@@ -36,3 +37,4 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 - `npm run preview` runs `wrangler dev` on port 8787.
 - `eslint-plugin-astro` stays at version 1 until the local Node reaches 24.16.
 - `docs/reference/` is gitignored; never commit or copy the book's pages.
+- The `image` skill's model rejects every prompt that names Lane Smith. The CEO has not chosen another model.
