@@ -10,6 +10,7 @@
     "build": "astro check && astro build",
     "preview": "wrangler dev",
     "boundaries": "depcruise core site tests --config .dependency-cruiser.cjs",
+    "test:unit": "node --test \"tests/unit/**/*.test.ts\"",
     "test:integration": "node --test \"tests/integration/**/*.test.ts\""
   },
   "devDependencies": {

@@ -8,7 +8,6 @@ The exact words and links the scene carries. The CEO signs this file off; the si
 - **Tag:** Developer Portfolio
 - **Bio:** The squeaky wheel gets the cheese.
 - **GitHub:** https://github.com/sandervw
-- **LinkedIn:** https://www.linkedin.com/in/sandervw/
 
 ## Projects
 

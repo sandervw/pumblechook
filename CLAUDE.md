@@ -1,6 +1,6 @@
 # Pumblechook
 
-A one-page portfolio painted as a deep-sea collage. Status: **planned, not built.** Start each session with `/handoff`.
+A one-page portfolio painted as a deep-sea collage. Start each session with `/handoff`.
 
 ## Roles
 
@@ -33,7 +33,7 @@ TypeScript on Node 24 with npm. Astro with static output. Cloudflare Workers sta
 
 ## Commands
 
-`npm ci`, `npm run dev`, `npm run build`, `npx playwright test` (black box), `npm run test:integration`, `npm run boundaries`.
+`npm ci`, `npm run dev`, `npm run build`, `npx playwright test` (black box), `npm run test:unit`, `npm run test:integration`, `npm run boundaries`.
 
 ## Rules
 

@@ -61,7 +61,7 @@ function drift(arms, elapsed) {
 
 /** Place the painted rib and write the owner's mark along it. */
 function buildRib(measure) {
-  addShape(document.querySelector("#rib-art"), "image", { href: "../painted-pieces/art/rib.webp", ...RIB.art, filter: "url(#shadow)" });
+  addShape(document.querySelector("#rib-art"), "image", { href: "../painted-pieces/art/rib.webp", ...RIB.art, filter: "url(#bone)" });
   const points = centreLine(RIB, STILL);
   const group = document.querySelector("#rib");
   addShape(group, "path", { id: "rib-line", d: linePath(points), fill: "none" });

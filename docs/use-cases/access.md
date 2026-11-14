@@ -1,6 +1,6 @@
 # Access
 
-**UC-12 Use the keyboard only.** Steps: open the site; press Tab until focus has passed through the whole page; press Enter on one link. Expected: focus visits every live site link, repository link, and profile link; projects come in the order of the content sheet; the focused link carries a mark that can be seen; the focused project's name and logline can be read; Enter opens the link.
+**UC-12 Use the keyboard only.** Steps: open the site; press Tab until focus has passed through the whole page; press Enter on one link. Expected: focus visits every live site link, every repository link, and the profile link; projects come in the order of the content sheet; the focused link carries a mark that can be seen; the focused project's name and logline can be read; Enter opens the link.
 
 **UC-13 Listen with a screen reader.** Steps: read the page with a screen reader from top to bottom. Expected: it speaks the owner's name and bio, then each project's name, logline, and links, each link named for where it goes; decorative pieces are passed over in silence.
 

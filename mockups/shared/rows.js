@@ -2,8 +2,8 @@
 
 import { addShape } from "./svg.js";
 
-const NAME_FACE = '"Pirata One", "Old English Text MT", serif';
-const TEXT_FACE = '"IM Fell English", Georgia, serif';
+const NAME_FACE = '"Grenze Gotisch", serif';
+const TEXT_FACE = '"IM Fell DW Pica", Georgia, serif';
 const CODE_WORD = "(code)";
 
 /** Wait for the fonts, then return a text measurer. */

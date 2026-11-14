@@ -1,6 +1,6 @@
 # Vision
 
-Pumblechook is a one-page portfolio painted like a picture-book collage: a deep-sea diver's dream with one central sea creature, and a project on each of five arms. A visitor reads a short logline for each project and follows a link to its live site or its public repository. The owner's name, a one-line bio, and GitHub and LinkedIn profile links live inside the picture too.
+Pumblechook is a one-page portfolio painted like a picture-book collage: a deep-sea diver's dream with one central sea creature, and a project on each of five arms. A visitor reads a short logline for each project and follows a link to its live site or its public repository. The owner's name, a one-line bio, and a GitHub profile link live inside the picture too.
 
 **For:** someone weighing the owner's software and data work (a hiring manager, a client, a peer) who arrives from a résumé or profile link with a minute to spare.
 

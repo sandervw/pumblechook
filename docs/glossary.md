@@ -9,9 +9,9 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Logline:** the single sentence describing a project, 25 words or fewer.
 - **Live site link:** the link to a project's published website.
 - **Repository link:** the link to a project's source code, present only when the repository is public.
-- **Owner's mark:** the owner's name, tag, one-line bio, and profile links.
+- **Owner's mark:** the owner's name, tag, one-line bio, and profile link.
 - **Tag:** the short line under the owner's name that says what the page is.
-- **Profile link:** a link to the owner's GitHub or LinkedIn profile.
+- **Profile link:** the link to the owner's GitHub profile.
 - **Broken rule:** one way the content fails a portfolio rule, naming the bad value.
 - **Content sheet:** `docs/content.md`, the CEO-approved words and links.
 

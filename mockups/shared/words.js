@@ -1,14 +1,11 @@
 // Copied from docs/content.md, letter for letter.
 
-/** The owner's mark: name, tag, bio, and profile links. */
+/** The owner's mark: name, tag, bio, and profile link. */
 export const OWNER = {
   name: "Sander VanWilligen",
   tag: "Developer Portfolio",
   bio: "The squeaky wheel gets the cheese.",
-  links: [
-    { label: "GitHub", url: "https://github.com/sandervw" },
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/sandervw/" },
-  ],
+  links: [{ label: "GitHub", url: "https://github.com/sandervw" }],
 };
 
 /** The five projects, in page order; private ones have no repository. */
