@@ -72,8 +72,8 @@ export function centreLine(curve: Curve, wriggle: Wriggle): Point[] {
 
 /** A rectangle of the scene: left, top, width, height. */
 export interface Box {
-  readonly x: number;
-  readonly y: number;
+  readonly left: number;
+  readonly top: number;
   readonly width: number;
   readonly height: number;
 }
@@ -87,8 +87,8 @@ export function reachBox(limb: Limb): Box {
   const left = Math.floor(Math.min(...acrosses) - margin);
   const top = Math.floor(Math.min(...downs) - margin);
   return {
-    x: left,
-    y: top,
+    left,
+    top,
     width: Math.ceil(Math.max(...acrosses) + margin) - left,
     height: Math.ceil(Math.max(...downs) + margin) - top,
   };

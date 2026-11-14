@@ -76,7 +76,7 @@ const swarm = WIDE.water.starts.map((place, fishIndex) => ({
     <!-- Softens a cut edge, then drops a paper shadow. -->
     {
       arms.map((arm) => (
-        <filter id={`cut-${arm.armIndex}`} filterUnits="userSpaceOnUse" {...arm.box}>
+        <filter id={`cut-${arm.armIndex}`} filterUnits="userSpaceOnUse" x={arm.box.left} y={arm.box.top} width={arm.box.width} height={arm.box.height}>
           <feGaussianBlur stdDeviation="0.45" result="cut" />
           <feDropShadow in="cut" dx="2" dy="4" stdDeviation="3.5" flood-color="#000" flood-opacity="0.6" />
         </filter>
