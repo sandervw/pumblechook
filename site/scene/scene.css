@@ -71,9 +71,15 @@ body {
 }
 
 /* Tattoos: faded blue-black ink, apart from the lettering. */
-.tattoos {
+.tattoos > g,
+.tattoos a {
   mix-blend-mode: multiply;
   opacity: 0.62;
+}
+
+/* The profile link's ink is fresher than the rest. */
+.tattoos a {
+  opacity: 0.85;
 }
 
 .tattoos .script {
@@ -109,9 +115,22 @@ body {
   cursor: pointer;
 }
 
+.tattoos a .script {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+/* A reached link glows like the project names. */
+.tattoos a:hover,
+.tattoos a:focus {
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
 .tattoos a:hover .script,
 .tattoos a:focus .script {
-  fill: #050b0e;
+  fill: #ffd34a;
 }
 
 .tattoos a:focus-visible {

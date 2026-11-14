@@ -43,7 +43,7 @@ export interface TattooPlaces {
 const TATTOOS: TattooPlaces = {
   tears: "translate(229 206) rotate(12) scale(1.15)",
   ouroboros: "translate(250 44) rotate(-10) scale(1.15)",
-  cross: "translate(21 118) rotate(180) scale(1.4)",
+  cross: "translate(21 118) scale(1.4)",
   lovers: "translate(218 102) rotate(-8)",
   profile: "translate(62 232) rotate(-7)",
 };
