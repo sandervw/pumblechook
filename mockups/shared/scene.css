@@ -25,7 +25,6 @@ body {
 }
 
 .owner .tag {
-  fill: #9a2d14;
   font-style: italic;
 }
 
@@ -33,9 +32,12 @@ body {
   cursor: pointer;
 }
 
+.words a .name,
 .words .link,
 .words .code {
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .words .code {

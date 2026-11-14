@@ -61,7 +61,7 @@ A rust-red kraken, lit from inside. Its body fills the upper-left third of the w
 
 ## Arms
 
-Five thick arms spread from under the body toward the right and the bottom. Each tapers, and none curls. Each has its own thickness, length, and text size. Each arm carries one project as real text along its length: the name, which links to the live site, then the logline, then *(code)* in italics for a public repository. Every arm wriggles very slowly all the time, and stops while a pointer rests on it.
+Five thick arms spread from under the body toward the right and the bottom. Each tapers, and none curls. Each has its own thickness, length, and text size. Each arm carries one project as real text along its length: the name, underlined, which links to the live site, then the logline, then *(code)* in italics for a public repository. Every arm wriggles very slowly all the time, and stops while a pointer rests on it.
 
 ## Dwellers
 
@@ -69,7 +69,7 @@ Six to ten lime-green fish slide back and forth in one patch of water, turning r
 
 ## Owner's mark
 
-One large whale's rib rises out of the sea floor at the lower right and curves up the right edge, its wide end buried. Real text runs along it: the name in large type, the tag beneath it in italics and another colour, the bio in quotation marks, and two profile links.
+One large whale's rib lies low in the sea floor at the lower right, its wide end buried in a mound. It rises in a shallow curve and leaves the scene at the right edge. Real text runs along it: the name in large type, the tag beneath it in italics, the bio in quotation marks, and two profile links.
 
 ## Sea floor
 

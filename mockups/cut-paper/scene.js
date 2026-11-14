@@ -51,7 +51,7 @@ function buildArm(parent, index, measure) {
 /** Let each arm drift, and bring a held arm to rest. */
 function drift(arms, elapsed) {
   for (const arm of arms) {
-    arm.flow += ((arm.held ? 0 : 1) - arm.flow) * 0.08;
+    arm.flow += ((arm.held ? 0 : 1) - arm.flow) * Math.min(elapsed / 200, 1);
     if (arm.flow > 0.002) {
       arm.phase += elapsed * arm.pace * arm.flow;
       pose(arm);
@@ -65,7 +65,7 @@ function buildRib(measure) {
   const points = centreLine(RIB, STILL);
   const group = document.querySelector("#rib");
   addShape(group, "path", { id: "rib-line", d: linePath(points), fill: "none" });
-  drawRows(group, layOutOwner(OWNER, RIB, limbLength(points) - 30, measure), "rib-line");
+  drawRows(group, layOutOwner(OWNER, RIB, RIB.textEnd, measure), "rib-line");
 }
 
 /** Return the lid's outline when it covers part of an eye. */

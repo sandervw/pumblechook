@@ -71,7 +71,7 @@ const ribLine = centreLine(RIB, STILL);
 const ribGroup = document.querySelector("#rib");
 addShape(document.querySelector("#rib-art"), "image", { href: "art/rib.webp", ...RIB.art, filter: "url(#shadow)" });
 addShape(ribGroup, "path", { id: "rib-line", d: linePath(ribLine), fill: "none" });
-drawRows(ribGroup, layOutOwner(OWNER, RIB, limbLength(ribLine) - 30, measure), "rib-line");
+drawRows(ribGroup, layOutOwner(OWNER, RIB, RIB.textEnd, measure), "rib-line");
 EYES.forEach((eye, index) => buildEye(document.querySelector("#eyes"), eye, index));
 const swarm = buildSwarm(document.querySelector("#swarm"));
 const moment = { last: 0 };

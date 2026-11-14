@@ -11,11 +11,12 @@ export const ARMS = [
 
 /** The painted whale's rib: its art, and the curve along it. */
 export const RIB = {
-  art: { width: 648, height: 420, transform: "translate(329.6 226.1) rotate(-8)" },
-  curve: [[381, 592], [831, 560], [943, 150]],
+  art: { width: 648, height: 420, transform: "translate(435.0 103.5) rotate(-1) scale(1.08)" },
+  curve: [[442, 502], [929, 527], [1103, 103]],
   nameSize: 28,
   textSize: 14,
-  textStart: 368,
+  textStart: 157,
+  textEnd: 544,
 };
 
 /** The two uneven eyes. */
