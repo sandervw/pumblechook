@@ -12,7 +12,7 @@ Pumblechook is a one-page portfolio painted like a picture-book collage: a deep-
 - Every element is part of the active art. Nothing sits in a header, a footer, or a title block; the name, the bio, and every link are objects in the scene.
 - No flat colour anywhere. Every surface carries a texture and a gradient.
 - Uneven by design: hand-cut edges, off-kilter placement, nothing aligned to a grid.
-- The scene is slowly alive: eyes blink, light wavers, an arm wriggles under the pointer.
+- The scene is slowly alive: eyes blink, light wavers, every arm wriggles slowly and stops under the pointer.
 - Two compositions of one scene: a wide one for desktops and a tall one for phones, each arranged on purpose.
 - Links never hide. Every project is reachable by touch, by keyboard, by screen reader, and with motion turned off.
 

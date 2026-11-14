@@ -41,31 +41,31 @@ function stack(entries, start, size) {
   }));
 }
 
-/** Place a project's linked name and sentence along a limb. */
+/** Place a project's linked name and logline along a limb. */
 export function layOutProject(project, limb, room, measure) {
-  const name = { text: project.name, start: limb.textStart, size: limb.nameSize, face: NAME_FACE, offset: 0, kind: "name", url: project.site };
+  const name = { text: project.name, start: limb.textStart, size: limb.nameSize, face: NAME_FACE, offset: 0, kind: "name", url: project.liveSite };
   const small = { size: limb.textSize, face: TEXT_FACE };
-  const sentenceStart = limb.textStart + measure(project.name, name) + 14;
-  const words = project.code ? `${project.sentence} ${CODE_WORD}` : project.sentence;
-  const rows = stack(wrapWords(words, (text) => measure(text, small), room - sentenceStart).map((text) => ({ text })), sentenceStart, limb.textSize);
-  if (project.code) {
+  const loglineStart = limb.textStart + measure(project.name, name) + 14;
+  const words = project.repository ? `${project.logline} ${CODE_WORD}` : project.logline;
+  const rows = stack(wrapWords(words, (text) => measure(text, small), room - loglineStart).map((text) => ({ text })), loglineStart, limb.textSize);
+  if (project.repository) {
     const last = rows.at(-1);
     last.text = last.text.slice(0, -CODE_WORD.length);
-    last.tail = { text: CODE_WORD, url: project.code };
+    last.tail = { text: CODE_WORD, url: project.repository };
   }
   return [name, ...rows];
 }
 
-/** Place the owner's name, tag, quote, and links along a limb. */
+/** Place the owner's name, tag, bio, and links along a limb. */
 export function layOutOwner(owner, limb, room, measure) {
   const name = { text: owner.name, start: limb.textStart, size: limb.nameSize, face: NAME_FACE, offset: -limb.textSize * 1.1, kind: "name" };
   const tag = { text: owner.tag, start: limb.textStart + 2, size: limb.textSize, face: TEXT_FACE, offset: limb.nameSize * 0.5 - limb.textSize * 0.4, kind: "tag" };
   const small = { size: limb.textSize, face: TEXT_FACE };
-  const quoteStart = limb.textStart + measure(owner.name, name) + 16;
+  const bioStart = limb.textStart + measure(owner.name, name) + 16;
   const linksStart = room - Math.max(...owner.links.map((link) => measure(link.label, small)));
-  const quoteRows = wrapWords(`“${owner.quote}”`, (text) => measure(text, small), linksStart - quoteStart - 14);
+  const bioRows = wrapWords(`“${owner.bio}”`, (text) => measure(text, small), linksStart - bioStart - 14);
   const links = owner.links.map((link) => ({ text: link.label, url: link.url, kind: "link" }));
-  return [name, tag, ...stack(quoteRows.map((text) => ({ text })), quoteStart, limb.textSize), ...stack(links, linksStart, limb.textSize)];
+  return [name, tag, ...stack(bioRows.map((text) => ({ text })), bioStart, limb.textSize), ...stack(links, linksStart, limb.textSize)];
 }
 
 /** Draw rows of text along the path with the given id. */

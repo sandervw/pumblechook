@@ -1,7 +1,7 @@
 // Painted pieces: each piece is one whole painted picture.
 
 import { EYES, RIB } from "../shared/layout.js";
-import { centreLine, limbLength, linePath } from "../shared/limb.js";
+import { centreLine, linePath } from "../shared/limb.js";
 import { drawRows, layOutOwner, layOutProject, loadMeasure } from "../shared/rows.js";
 import { addShape } from "../shared/svg.js";
 import { buildSwarm, slideSwarm } from "../shared/swarm.js";

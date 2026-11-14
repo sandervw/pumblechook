@@ -35,7 +35,7 @@ A shell calls contexts in turn and passes plain values; it makes no rule of its 
 
 - **Portfolio:** an owner's mark and an ordered list of exactly five uniquely named projects, one per arm. The order is the arm order and the keyboard order.
 - **Project:** a name, a logline of one to 25 words, a live site link, and an optional repository link.
-- **OwnerMark:** a name, a one-line bio, and profile links.
+- **OwnerMark:** a name, a tag, a one-line bio, and profile links.
 - Every link is an absolute `https` URL.
 
 `parsePortfolio` returns a `Portfolio` or a list of `BrokenRule`.

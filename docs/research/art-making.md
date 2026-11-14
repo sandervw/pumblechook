@@ -4,7 +4,7 @@
 
 How are the painted pieces of the scene produced, so that nothing looks flat and an arm can still wriggle?
 
-## Decision
+## Recommendation
 
 Cut paper for the arms, the eyes, and the body's paint. Painted pieces for the background, the sea floor, the whale's rib, the fish, and the body's outline. See `docs/architecture.md`, section 9.
 

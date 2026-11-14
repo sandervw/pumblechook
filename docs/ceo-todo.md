@@ -4,7 +4,6 @@ Things only the CEO can do: accounts, logins, keys, payments, approvals. Check i
 
 ## During the build
 
-- [ ] Pick one of the three art-method mockups.
 - [ ] Say yes or no to image generation spend for the full scene. The mockups have $10.
 - [ ] Review each scene branch on its Preview link.
 

@@ -9,7 +9,8 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Logline:** the single sentence describing a project, 25 words or fewer.
 - **Live site link:** the link to a project's published website.
 - **Repository link:** the link to a project's source code, present only when the repository is public.
-- **Owner's mark:** the owner's name, one-line bio, and profile links.
+- **Owner's mark:** the owner's name, tag, one-line bio, and profile links.
+- **Tag:** the short line under the owner's name that says what the page is.
 - **Profile link:** a link to the owner's GitHub or LinkedIn profile.
 - **Broken rule:** one way the content fails a portfolio rule, naming the bad value.
 - **Content sheet:** `docs/content.md`, the CEO-approved words and links.
@@ -19,6 +20,7 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Scene:** the whole picture a visitor sees.
 - **Creature:** the central sea animal.
 - **Arm:** one limb of the creature; each arm carries one project.
+- **Whale's rib:** the bone that carries the owner's mark.
 - **Dweller:** any smaller animal in the scene.
 - **Piece:** one visible element of the scene.
 - **Texture sheet:** an image of painted surface that pieces are cut from.
@@ -26,6 +28,6 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Wriggle:** an arm's slow, constant movement, which stops while a pointer rests on the arm.
 - **Blink:** an eye closing and reopening on its own.
 - **Wavering light:** the slow shift of light across the scene.
-- **Art method:** the way pieces are made: cut paper, whole painted pieces, or code only.
+- **Art method:** the way pieces are made: cut paper or whole painted pieces.
 - **Mockup:** a draft scene made to compare art methods or designs; never deployed.
 - **Preview:** the public link Cloudflare makes for a branch.
