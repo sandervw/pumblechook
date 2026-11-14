@@ -1,0 +1,143 @@
+/* The scene's page, its lettering, and its slow motion. */
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #070d0e;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+#scene {
+  display: block;
+  width: min(100vw, 100vh * 16 / 9);
+  aspect-ratio: 16 / 9;
+}
+
+.words text {
+  font-family: "IM Fell DW Pica", Georgia, serif;
+  fill: #f7e8c4;
+}
+
+.words .name {
+  font-family: "Grenze Gotisch", serif;
+}
+
+.owner text {
+  fill: #2b2118;
+}
+
+.owner .tag,
+.words .code {
+  font-style: italic;
+}
+
+.words a {
+  cursor: pointer;
+}
+
+.words a .name,
+.words .link,
+.words .code {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.words a:hover text,
+.words a:focus text {
+  fill: #ffd34a;
+}
+
+.owner a:hover text,
+.owner a:focus text {
+  fill: #9a2d14;
+}
+
+/* Keyboard focus lights a link like the creature's eye. */
+.words a:focus-visible {
+  outline: none;
+}
+
+.words a:focus-visible text {
+  stroke: rgb(255 138 42 / 0.5);
+  stroke-width: 0.24em;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+/* The lit water sits unseen until it wavers. */
+.light {
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+.weed {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.fish-lid {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .light {
+    animation: waver-light 23s ease-in-out infinite alternate;
+  }
+
+  .weed {
+    animation: sway-weed 19s ease-in-out infinite alternate;
+  }
+
+  .weed + .weed {
+    animation-duration: 23s;
+    animation-delay: -7s;
+  }
+
+  .fish-lid {
+    animation: blink-fish 9s linear infinite;
+  }
+}
+
+@keyframes waver-light {
+  from {
+    opacity: 0.05;
+    transform: scale(1.08) translateX(-60px) skewX(-4deg);
+  }
+
+  to {
+    opacity: 0.5;
+    transform: scale(1.08) translateX(-10px) skewX(4deg);
+  }
+}
+
+@keyframes sway-weed {
+  from {
+    transform: skewX(-7deg);
+  }
+
+  to {
+    transform: skewX(7deg);
+  }
+}
+
+@keyframes blink-fish {
+  0%,
+  93% {
+    opacity: 0;
+  }
+
+  96%,
+  98% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

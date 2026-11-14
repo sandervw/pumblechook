@@ -50,6 +50,8 @@ async function expectProjectReadable(page: Page, address: string) {
 test("UC-12 Tab visits every link in sheet order with a mark", async ({
   page,
 }) => {
+  // Stillness, so only the focus mark can differ.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   const stops = await tabThroughPage(page);
   const visited = stops.map((stop) => stop.address);

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { ownerMark, projects } from "./support/content";
-import { followAndReturn, linkTo, stubOutsideSites } from "./support/visitor";
+import { followAndReturn, linkTo, reachArm, stubOutsideSites } from "./support/visitor";
 
 const publicProjects = projects.filter((project) => project.repositoryLink);
 
@@ -14,7 +14,7 @@ for (const project of publicProjects) {
     const address = project.repositoryLink ?? "";
     const codeLink = linkTo(page, address);
 
-    await page.getByRole("link", { name: project.name, exact: true }).hover();
+    await reachArm(page, page.getByRole("link", { name: project.name, exact: true }));
     await expect(codeLink).toHaveCount(1);
     await expect(codeLink).toBeVisible();
     await expect(codeLink).toHaveText("(code)");

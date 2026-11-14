@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { projects } from "./support/content";
-import { followAndReturn, stubOutsideSites } from "./support/visitor";
+import { followAndReturn, reachArm, stubOutsideSites } from "./support/visitor";
 
 for (const project of projects) {
   test(`UC-04 ${project.name} name opens its live site`, async ({
@@ -11,7 +11,7 @@ for (const project of projects) {
     await page.goto("/");
     const nameLink = page.getByRole("link", { name: project.name, exact: true });
 
-    await nameLink.hover();
+    await reachArm(page, nameLink);
     await followAndReturn(page, nameLink, project.liveSiteLink);
   });
 }

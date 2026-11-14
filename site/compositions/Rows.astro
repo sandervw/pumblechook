@@ -1,0 +1,25 @@
+---
+import type { Block } from "./rows.ts";
+
+interface Props {
+  blocks: readonly Block[];
+  lineId: string;
+}
+
+const { blocks, lineId } = Astro.props;
+// Every row but the last ends in a space.
+const closing = (block: Block, rowIndex: number) => (rowIndex < block.rows.length - 1 ? " " : "");
+---
+
+{
+  blocks.map((block) => {
+    const text = (
+      <text class={block.kind} font-size={block.size}>
+        {block.rows.map((row, rowIndex) => (
+          <textPath href={`#${lineId}`} startOffset={row.start.toFixed(1)}><tspan dy={row.drop.toFixed(1)}>{row.text}{closing(block, rowIndex)}</tspan></textPath>
+        ))}
+      </text>
+    );
+    return block.url ? <a href={block.url} aria-label={block.label}>{text}</a> : text;
+  })
+}
