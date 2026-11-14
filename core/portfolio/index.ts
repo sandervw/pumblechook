@@ -6,11 +6,10 @@ export interface Project {
   readonly repositoryLink?: string;
 }
 
-/** The owner's name, tag, one-line bio, and profile link. */
+/** The owner's name, tag, and profile link. */
 export interface OwnerMark {
   readonly name: string;
   readonly tag: string;
-  readonly bio: string;
   readonly profileLink: string;
 }
 

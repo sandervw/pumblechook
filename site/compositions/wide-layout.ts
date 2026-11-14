@@ -17,13 +17,12 @@ const ARMS: readonly (Limb & Lettering)[] = [
 ];
 
 /** The whale's rib: its art, and the curve its text follows. */
-const RIB: Lettering & { curve: Curve; art: { width: number; height: number; transform: string }; textEnd: number } = {
-  art: { width: 648, height: 420, transform: "translate(435.0 103.5) rotate(-1) scale(1.08)" },
+const RIB: Lettering & { curve: Curve; art: { width: number; height: number; transform: string } } = {
+  art: { width: 648, height: 431, transform: "translate(435.0 103.5) rotate(-1) scale(1.08)" },
   curve: [[442, 502], [929, 527], [1103, 103]],
   nameSize: 28,
   textSize: 14,
   textStart: 157,
-  textEnd: 544,
 };
 
 /** The two uneven eyes. */
@@ -31,6 +30,23 @@ const EYES: readonly Eye[] = [
   { centre: [120, 94], radius: 80, pupil: [146, 118], pupilRadius: 18 },
   { centre: [249, 183], radius: 19, pupil: [251.5, 189.5], pupilRadius: 4.5 },
 ];
+
+/** Where each tattoo sits on the skin, as a transform. */
+export interface TattooPlaces {
+  readonly tears: string;
+  readonly ouroboros: string;
+  readonly cross: string;
+  readonly lovers: string;
+  readonly profile: string;
+}
+
+const TATTOOS: TattooPlaces = {
+  tears: "translate(229 206) rotate(12) scale(1.15)",
+  ouroboros: "translate(250 44) rotate(-10) scale(1.15)",
+  cross: "translate(21 118) scale(1.4)",
+  lovers: "translate(218 102) rotate(-8)",
+  profile: "translate(62 232) rotate(-7)",
+};
 
 /** The water the fish keep to, and where each one starts. */
 const WATER: Water = {
@@ -42,4 +58,4 @@ const WATER: Water = {
 };
 
 /** Where the wide composition puts every piece. */
-export const WIDE = { arms: ARMS, rib: RIB, eyes: EYES, water: WATER };
+export const WIDE = { arms: ARMS, rib: RIB, eyes: EYES, tattoos: TATTOOS, water: WATER };

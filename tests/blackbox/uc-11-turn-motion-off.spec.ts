@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { ownerMark, projects } from "./support/content";
-import { followAndReturn, linkTo, stubOutsideSites } from "./support/visitor";
+import { followAndReturn, linkTo, pictureArea, stubOutsideSites } from "./support/visitor";
 
 test.use({ viewport: { width: 1280, height: 800 }, contextOptions: { reducedMotion: "reduce" } });
 
@@ -25,6 +25,14 @@ test("UC-11 with motion off nothing moves and all still reads", async ({ page, b
   const pointedAt = await page.screenshot();
   await page.waitForTimeout(3000);
   expect((await page.screenshot()).equals(pointedAt), "the scene moved under the pointer").toBe(true);
+
+  // Rest the pointer on the large eye: still nothing moves.
+  const picture = await pictureArea(page);
+  await page.mouse.move(picture.x + picture.width * 0.125, picture.y + picture.height * 0.22);
+  await page.waitForTimeout(500);
+  const staredAt = await page.screenshot();
+  await page.waitForTimeout(2000);
+  expect((await page.screenshot()).equals(staredAt), "the eye moved under the pointer").toBe(true);
 
   // Every name, logline, and link still reads and opens.
   await expect(page.getByText(ownerMark.name, { exact: true })).toBeVisible();

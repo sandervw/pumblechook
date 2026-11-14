@@ -1,0 +1,42 @@
+---
+// Faded ink on the creature's skin; the cheek tattoo links the profile.
+import type { TattooPlaces } from "./wide-layout.ts";
+
+interface Props {
+  profileLink: string;
+  places: TattooPlaces;
+}
+
+const { profileLink, places } = Astro.props;
+const SNAKE =
+  "M 8.6 -12.2 L 10.3 -11.1 L 11.8 -9.8 L 13.2 -8.2 L 14.4 -6.4 L 15.3 -4.5 L 16 -2.4 L 16.4 -0.2 L 16.5 2 L 16.2 4.3 L 15.7 6.5 L 14.7 8.6 L 13.4 10.5 L 11.9 12.2 L 10.1 13.7 L 8.2 14.9 L 6.1 15.9 L 3.9 16.5 L 1.6 16.9 L -0.7 17 L -3 16.7 L -5.2 16.2 L -7.3 15.3 L -9.3 14.2 L -11.2 12.8 L -12.8 11.2 L -14.2 9.4 L -15.3 7.4 L -16.2 5.3 L -16.7 3 L -17 0.7 L -16.9 -1.6 L -16.6 -3.8 L -15.9 -6 L -14.9 -8.1 L -13.7 -10.1 L -12.2 -11.8 L -10.5 -13.4 L -8.6 -14.6 L -6.6 -15.7 L -4.4 -16.4 L -3 -11.1 L -4.4 -10.6 L -5.8 -9.9 L -7.1 -9 L -8.3 -8 L -9.3 -6.8 L -10.1 -5.5 L -10.8 -4.1 L -11.2 -2.6 L -11.5 -1.1 L -11.5 0.5 L -11.3 2 L -10.9 3.6 L -10.4 5 L -9.6 6.3 L -8.6 7.6 L -7.5 8.7 L -6.3 9.6 L -5 10.4 L -3.5 11 L -2 11.3 L -0.5 11.5 L 1.1 11.4 L 2.6 11.2 L 4.1 10.7 L 5.5 10.1 L 6.8 9.2 L 8 8.2 L 9.1 7.1 L 9.9 5.8 L 10.6 4.4 L 11.3 3 L 11.8 1.5 L 12.1 -0.2 L 12.2 -1.8 L 12 -3.5 L 11.6 -5.2 L 11 -6.8 L 10.1 -8.4 L 9.1 -9.8 L 7.8 -11.1 Z";
+const SCALES =
+  "M 12.6 -8.7 L 11.6 -6.4 M 14.8 -5.2 L 12.5 -3 M 15.9 -1 L 12.5 0.5 M 15.9 3.3 L 11.6 3.7 M 14.6 7.5 L 10.1 6.6 M 12.1 11.2 L 7.9 9.1 M 8.7 14 L 5.2 10.9 M 4.6 15.8 L 2.1 11.9 M 0.2 16.4 L -1.1 12 M -4.2 15.9 L -4.3 11.3 M -8.3 14.2 L -7.1 9.7 M -11.8 11.5 L -9.5 7.5 M -14.4 7.9 L -11.1 4.7 M -16 3.8 L -12 1.5 M -16.4 -0.6 L -11.9 -1.7 M -15.7 -5 L -11 -4.9 M -13.8 -9 L -9.3 -7.6 M -10.8 -12.4 L -7 -9.8 M -7.1 -14.8 L -4.1 -11.3";
+const TEAR = "M 0 -6 C 1.6 -2.4 3.2 -0.4 3.2 1.8 A 3.2 3.2 0 0 1 -3.2 1.8 C -3.2 -0.4 -1.6 -2.4 0 -6 Z";
+---
+
+<g class="tattoos" filter="url(#faded)">
+  <g aria-hidden="true" pointer-events="none">
+    <g transform={places.tears}>
+      <path d={TEAR} class="ink"></path>
+      <path d={TEAR} class="line" transform="translate(-3 15) scale(0.8)"></path>
+    </g>
+    <g transform={places.ouroboros}>
+      <path d={SNAKE} class="line"></path>
+      <path d={SCALES} class="line thin"></path>
+      <ellipse cx="1.8" cy="-14.2" rx="5.6" ry="3.7" class="ink"></ellipse>
+      <circle cx="3" cy="-15.2" r="0.9" class="skin"></circle>
+    </g>
+    <g transform={places.cross} class="line">
+      <path d="M 0 -15 L 0 15 M -6 7 L 6 7"></path>
+    </g>
+    <g transform={places.lovers}>
+      <text class="script" font-size="16">Minerva</text>
+      <path d="M -3 -4 C 14 -6 34 -2 56 -5" class="line strike"></path>
+      <text class="script" font-size="20" x="12" y="20">Gemma</text>
+    </g>
+  </g>
+  <a href={profileLink} aria-label="GitHub">
+    <text class="script" font-size="26" transform={places.profile}>GitHub</text>
+  </a>
+</g>

@@ -12,7 +12,6 @@ export interface Project {
 export const ownerMark = {
   name: "Sander VanWilligen",
   tag: "Developer Portfolio",
-  bio: "The squeaky wheel gets the cheese.",
   profileLink: "https://github.com/sandervw",
 };
 

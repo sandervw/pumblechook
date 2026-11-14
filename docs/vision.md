@@ -1,6 +1,6 @@
 # Vision
 
-Pumblechook is a one-page portfolio painted like a picture-book collage: a deep-sea diver's dream with one central sea creature, and a project on each of five arms. A visitor reads a short logline for each project and follows a link to its live site or its public repository. The owner's name, a one-line bio, and a GitHub profile link live inside the picture too.
+Pumblechook is a one-page portfolio painted like a picture-book collage: a deep-sea diver's dream with one central sea creature, and a project on each of five arms. A visitor reads a short logline for each project and follows a link to its live site or its public repository. The owner's name and a GitHub profile link live inside the picture too.
 
 **For:** someone weighing the owner's software and data work (a hiring manager, a client, a peer) who arrives from a résumé or profile link with a minute to spare.
 
@@ -9,7 +9,7 @@ Pumblechook is a one-page portfolio painted like a picture-book collage: a deep-
 **Principles:**
 
 - The page is a picture. No boxes, grids, or navigation bars.
-- Every element is part of the active art. Nothing sits in a header, a footer, or a title block; the name, the bio, and every link are objects in the scene.
+- Every element is part of the active art. Nothing sits in a header, a footer, or a title block; the name and every link are objects in the scene.
 - No flat colour anywhere. Every surface carries a texture and a gradient.
 - Uneven by design: hand-cut edges, off-kilter placement, nothing aligned to a grid.
 - The scene is slowly alive: eyes blink, light wavers, every arm wriggles slowly and stops under the pointer.

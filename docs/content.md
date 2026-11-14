@@ -1,12 +1,11 @@
 # Content
 
-The exact words and links the scene carries. The CEO signs this file off; the site must match it letter for letter. A logline is 25 words or fewer. A project's name is its live site link. The repository link reads *(code)*, follows the logline, and appears only for a public repository. The bio is shown in quotation marks.
+The exact words and links the scene carries. The CEO signs this file off; the site must match it letter for letter. A logline is 25 words or fewer. A project's name is its live site link. The repository link reads *(code)*, follows the logline, and appears only for a public repository. The owner's name and tag share one line. The profile link reads *GitHub*, as a tattoo on the creature's cheek.
 
 ## Owner's mark
 
 - **Name:** Sander VanWilligen
 - **Tag:** Developer Portfolio
-- **Bio:** The squeaky wheel gets the cheese.
 - **GitHub:** https://github.com/sandervw
 
 ## Projects

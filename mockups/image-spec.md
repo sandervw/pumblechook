@@ -15,7 +15,7 @@ Lane Smith traits to hit:
 - **Figures:** lumpy, simple bodies; heavy-lidded eyes with tiny pupils; thin spidery lines for whiskers, hair, and legs. Deadpan and a little grumpy.
 - **Type:** blackletter display for names, letter-spaced and set off-kilter. Old-style serif for sentences, in mixed sizes. Ornamental brackets around a label.
 
-The scene's fonts are Grenze Gotisch SemiBold for names and IM Fell DW Pica for sentences, both hosted in `public/fonts/`.
+The scene's fonts are Grenze Gotisch SemiBold for names, IM Fell DW Pica for sentences, and Yellowtail for tattoos, all hosted in `public/fonts/`.
 
 ## Prompt wording
 
@@ -59,7 +59,11 @@ What the scene takes from it:
 
 ## Creature
 
-A rust-red kraken, lit from inside. Its body fills the upper-left third of the wide scene and runs off the page. It has two uneven eyes: one very large, one small. Each is a round yellow eyeball with a dark pupil, under a lid that slides down to blink. The eyes blink slowly and seldom, a fraction of a second apart, in no fixed order.
+A rust-red kraken, lit from inside. Its body fills the upper-left third of the wide scene and runs off the page. It has two uneven eyes: one very large, one small. Each is a round yellow eyeball with a dark pupil, under a lid that slides down to blink. The eyes blink seldom, a fraction of a second apart, in no fixed order. Each lid falls fast and slows as it shuts, then lifts; the waits between blinks vary, with now and then a quick second blink. An eye under a pointer stares: it opens wide, swells, and shudders, and does not blink.
+
+## Tattoos
+
+Faded, blue-black ink on the creature's skin: tears at the corner of the small eye, an ouroboros, an upside-down cross, and the name *Minerva* struck through with *Gemma* beside it. The profile link is a tattoo on the cheek reading *GitHub*, in a retro tattoo script.
 
 ## Arms
 
@@ -71,7 +75,7 @@ Six to ten lime-green fish slide back and forth in one patch of water, turning r
 
 ## Owner's mark
 
-One large whale's rib lies low in the sea floor at the lower right, its wide end buried in a mound. It rises in a shallow curve and leaves the scene at the right edge. Real text runs along it: the name in large type, the tag beneath it in italics, the bio in quotation marks, and the profile link.
+One large whale's rib lies low in the sea floor at the lower right, its wide end buried in a mound. It rises in a shallow curve and leaves the scene at the right edge. Real text runs along it on one line: the name in large type, then the tag in italics.
 
 ## Sea floor
 

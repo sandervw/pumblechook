@@ -35,7 +35,7 @@ A shell calls contexts in turn and passes plain values; it makes no rule of its 
 
 - **Portfolio:** an owner's mark and an ordered list of exactly five uniquely named projects, one per arm. The order is the arm order and the keyboard order.
 - **Project:** a name, a logline of one to 25 words, a live site link, and an optional repository link.
-- **OwnerMark:** a name, a tag, a one-line bio, and a profile link.
+- **OwnerMark:** a name, a tag, and a profile link.
 - Every link is an absolute `https` URL.
 
 `parsePortfolio` returns a `Portfolio` or a list of `BrokenRule`.
@@ -89,3 +89,5 @@ The scene is a stack of separate pieces, listed in `mockups/image-spec.md`. The 
 
 - **Cut paper:** the arms, the eyes, and the body's paint. Code draws each outline and fills it from a painted texture sheet. An arm's text follows its outline as it bends.
 - **Painted pieces:** the background, the sea floor and its weed, the whale's rib, the fish, and the body's outline. An image model paints each piece whole on a plain flat ground, and the ground is cut away.
+- **Ink:** the tattoos are drawn in code and set in Yellowtail, faded into the skin.
+- **Grain:** one sheet of paper grain and a parchment cast lie over the whole scene, words included.

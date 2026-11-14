@@ -9,7 +9,7 @@ test("UC-13 reading order follows the owner's mark, then projects in sheet order
   const spoken = await page.locator("body").ariaSnapshot();
 
   // Each piece must be spoken after the one before.
-  const sequence = [ownerMark.name, ownerMark.bio];
+  const sequence = [ownerMark.name, ownerMark.tag];
   for (const project of projects) {
     sequence.push(`/url: ${project.liveSiteLink}`, project.logline);
     if (project.repositoryLink) sequence.push(`/url: ${project.repositoryLink}`);

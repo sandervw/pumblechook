@@ -9,8 +9,8 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Logline:** the single sentence describing a project, 25 words or fewer.
 - **Live site link:** the link to a project's published website.
 - **Repository link:** the link to a project's source code, present only when the repository is public.
-- **Owner's mark:** the owner's name, tag, one-line bio, and profile link.
-- **Tag:** the short line under the owner's name that says what the page is.
+- **Owner's mark:** the owner's name, tag, and profile link.
+- **Tag:** the short line beside the owner's name that says what the page is.
 - **Profile link:** the link to the owner's GitHub profile.
 - **Broken rule:** one way the content fails a portfolio rule, naming the bad value.
 - **Content sheet:** `docs/content.md`, the CEO-approved words and links.
@@ -29,6 +29,8 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Composition:** one arrangement of the scene's pieces. **Wide** suits desktops; **Tall** suits phones.
 - **Wriggle:** an arm's slow, constant movement, which stops while a pointer rests on the arm.
 - **Blink:** an eye closing and reopening on its own.
+- **Stare:** an eye opening wide and shuddering while a pointer rests on it.
+- **Tattoo:** faded ink on the creature's skin; one tattoo is the profile link.
 - **Wavering light:** the slow shift of light across the scene.
 - **Art method:** the way pieces are made: cut paper or whole painted pieces.
 - **Mockup:** a draft scene made to compare art methods or designs; never deployed.
