@@ -34,7 +34,7 @@ const { ownerMark, projects } = parsed;
                 <a href={project.liveSiteLink}>{project.name}</a>
               </h2>
               <p>
-                {project.logline}
+                {project.logline}{" "}
                 {project.repositoryLink && (
                   <a href={project.repositoryLink} aria-label={`${project.name} (code)`}>
                     <i>(code)</i>
