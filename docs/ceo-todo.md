@@ -2,23 +2,8 @@
 
 Things only the CEO can do: accounts, logins, keys, payments, approvals. Check items off; delete sections once done.
 
-## Before the mockups
-
-- [X] Save the "Squids Will Be Squids" screenshots into `docs/reference/`.
-
-## Before the words go on the page
-
-- [X] Edit the five loglines in `docs/content.md` until they read right.
-- [X] Fill in your bio and LinkedIn link in `docs/content.md`, and check your name.
-
-## After the scaffold merges
-
-- [ ] In the Cloudflare dashboard, open Workers & Pages, select Create application, then GitHub, and import the `sandervw/pumblechook` repository. Name the Worker `pumblechook`, set the build command to `npm run build`, and deploy.
-- [ ] Open the `pumblechook` Worker, go to Settings, then Builds, and turn on builds for Preview branches.
-
 ## During the build
 
-- [ ] Pick one of the three art-method mockups.
 - [ ] Say yes or no to image generation spend for the full scene. The mockups have $10.
 - [ ] Review each scene branch on its Preview link.
 

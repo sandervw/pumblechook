@@ -50,7 +50,7 @@ def target_in(rest: str) -> str | None:
 
 def github(command: list[str]) -> str:
     """Run a gh command and return its output, raising on failure."""
-    return subprocess.run(command, capture_output=True, text=True, check=True).stdout
+    return subprocess.run(command, capture_output=True, encoding="utf-8", check=True).stdout
 
 
 def merge_problem(command: str) -> str | None:

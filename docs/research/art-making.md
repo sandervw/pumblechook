@@ -6,7 +6,7 @@ How are the painted pieces of the scene produced, so that nothing looks flat and
 
 ## Recommendation
 
-Cut paper: paint texture sheets as images, and cut every shape out of them with vector outlines. It is how a collage artist works: paint a sheet of mottled green first, then take scissors to it; here the sheets are image files and the scissors are outlines the browser can bend. The paint stays real paint, and a wriggle moves the cut, not the pixels.
+Cut paper for the arms, the eyes, and the body's paint. Painted pieces for the background, the sea floor, the whale's rib, the fish, and the body's outline. See `docs/architecture.md`, section 9.
 
 ## Comparison
 
@@ -15,7 +15,7 @@ Cut paper: paint texture sheets as images, and cut every shape out of them with 
 | Fits the need | Real paint grain; arms bend smoothly | Richest single pieces; arms bend stiffly or need warping | Truest collage | Looks digital; grain is synthetic |
 | Connected tools | Image model or scans for sheets; SVG for cuts | Image model; background removal | Paint, scanner, photo editor | SVG filters only |
 | Development flow | Change a shape in code, see it at once | Regenerate a piece to change it | Repaint and rescan to change it | Fastest loop |
-| Cost | A few dollars of image generation, or none with scans | More generation; many retries per piece | CEO's time and materials | None |
+| Cost | Image generation, or none with scans | More generation; many retries per piece | CEO's time and materials | None |
 | Maintenance and license | Sheets are abstract textures: no likeness to any book art | Each piece risks echoing a specific illustration | Wholly original | Wholly original |
 | Reversibility | High: swap sheets or shapes separately | Low: pieces bake shape and paint together | Low | High |
 | Rules out | Painted detail inside a shape, unless added as its own piece | Smooth bending without a warp engine | Quick iteration | A painted look |
@@ -47,4 +47,4 @@ Cut paper: paint texture sheets as images, and cut every shape out of them with 
 
 ## Style and rights
 
-The book is a reference for traits (mottled paint, dark vignettes, cut-paper edges, off-kilter type), never a source. No page, character, or composition from it is copied, traced, or used as an image-model input.
+Lane Smith's picture-book painting is the defining style. Every agent brief and spec names him, alongside his traits (mottled paint, dark vignettes, cut-paper edges, off-kilter type). Image prompts use the wording in `mockups/image-spec.md`. No page, character, or composition from his books is copied, traced, or used as an image-model input.

@@ -1,0 +1,78 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #070d0e;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+#scene {
+  display: block;
+  width: min(100vw, 100vh * 16 / 9);
+  aspect-ratio: 16 / 9;
+}
+
+.words text {
+  fill: #f7e8c4;
+}
+
+.owner text {
+  fill: #2b2118;
+}
+
+.owner .tag {
+  font-style: italic;
+}
+
+.words a {
+  cursor: pointer;
+}
+
+.words a .name,
+.words .link,
+.words .code {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.words .code {
+  font-style: italic;
+}
+
+.words a:hover text,
+.words a:focus text,
+.words a:hover .code,
+.words a:focus .code {
+  fill: #ffd34a;
+}
+
+.owner a:hover text,
+.owner a:focus text {
+  fill: #9a2d14;
+}
+
+.weed {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: sway-weed 19s ease-in-out infinite alternate;
+}
+
+.weed + .weed {
+  animation-duration: 23s;
+  animation-delay: -7s;
+}
+
+@keyframes sway-weed {
+  from {
+    transform: skewX(-7deg);
+  }
+
+  to {
+    transform: skewX(7deg);
+  }
+}
