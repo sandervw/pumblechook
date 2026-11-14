@@ -1,0 +1,66 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #070d0e;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+#scene {
+  display: block;
+  width: min(100vw, 100vh * 16 / 9);
+  aspect-ratio: 16 / 9;
+}
+
+.words text {
+  fill: #f7e8c4;
+}
+
+.owner text {
+  fill: #2b2118;
+}
+
+.words a text {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.words a:hover text,
+.words a:focus text {
+  fill: #ffd34a;
+}
+
+.owner a:hover text,
+.owner a:focus text {
+  fill: #8a1f0c;
+}
+
+#light {
+  filter: blur(14px);
+}
+
+.shaft {
+  animation: waver 9s ease-in-out infinite alternate;
+}
+
+.shaft:nth-child(2) {
+  animation-duration: 13s;
+}
+
+.shaft:nth-child(3) {
+  animation-duration: 17s;
+}
+
+@keyframes waver {
+  from {
+    opacity: 0.25;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

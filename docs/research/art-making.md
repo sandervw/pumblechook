@@ -47,4 +47,4 @@ Cut paper: paint texture sheets as images, and cut every shape out of them with 
 
 ## Style and rights
 
-Lane Smith's picture-book painting is the defining style. Every image prompt, agent brief, and spec names him, alongside his traits (mottled paint, dark vignettes, cut-paper edges, off-kilter type). No page, character, or composition from his books is copied, traced, or used as an image-model input.
+Lane Smith's picture-book painting is the defining style. Every agent brief and spec names him, alongside his traits (mottled paint, dark vignettes, cut-paper edges, off-kilter type). Image prompts use the wording in `mockups/image-spec.md`. No page, character, or composition from his books is copied, traced, or used as an image-model input.

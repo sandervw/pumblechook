@@ -4,7 +4,7 @@ The one scene every mockup builds. The CEO has signed off the wide layout in `mo
 
 ## Style: Lane Smith
 
-The defining style is Lane Smith's picture-book painting, as seen in the photos in `docs/reference/`. Name Lane Smith in every image prompt and every agent brief. No page, character, or composition from his books is copied, traced, or given to an image model.
+The defining style is Lane Smith's picture-book painting, as seen in the photos in `docs/reference/`. Name Lane Smith in every agent brief. Image prompts carry the words under Prompt wording. No page, character, or composition from his books is copied, traced, or given to an image model.
 
 Lane Smith traits to hit:
 
@@ -14,6 +14,31 @@ Lane Smith traits to hit:
 - **Lighting:** forms glow from inside, bright at the centre and falling to dark at the rim. Heavy vignettes. Hard black silhouettes against a lit ground.
 - **Figures:** lumpy, simple bodies; heavy-lidded eyes with tiny pupils; thin spidery lines for whiskers, hair, and legs. Deadpan and a little grumpy.
 - **Type:** blackletter display for names, letter-spaced and set off-kilter. Old-style serif for sentences, in mixed sizes. Ornamental brackets around a label.
+
+## Prompt wording
+
+Prompts stay short. Every prompt ends with:
+
+> Stencil-sharp shapes, speckled oil glazes. Deadpan, slightly creepy picture-book art.
+
+Words that hold the look:
+
+- **The creature:** "huge simple body", "one huge half-closed yellow eye and one tiny one", "soft glow from inside".
+- **Layering:** "the body is one cut-paper piece laid over five separate, very thick, uneven arms".
+- **Dark ground:** "dark, mottled, speckled painted paper".
+- **Scraps:** "torn scraps of speckled painted paper".
+
+## Pieces
+
+The scene is a stack of separate pieces:
+
+- The background.
+- The sea floor.
+- The whale's rib.
+- Five arms.
+- The body.
+- Two eyes, each an eyeball under its own lid.
+- Two or three fish cutouts, repeated to make the swarm.
 
 ## Background
 
@@ -32,11 +57,11 @@ What the scene takes from it:
 
 ## Creature
 
-A kraken, lit from inside. Its body fills the upper-left third of the wide scene and runs off the page. It has two uneven eyes that blink: one very large, one small.
+A rust-red kraken, lit from inside. Its body fills the upper-left third of the wide scene and runs off the page. It has two uneven eyes: one very large, one small. Each is a round yellow eyeball with a dark pupil, under a lid that slides down to blink.
 
 ## Arms
 
-Five thick arms spread from the body toward the right and the bottom. Each has its own thickness, length, and text size. Each arm carries one project: the name, logline, and links run along the arm's length as real text. An arm wriggles while a pointer rests on it.
+Five thick arms spread from under the body toward the right and the bottom. Each tapers, and none curls. Each has its own thickness, length, and text size. Each arm carries one project: the name, logline, and links run along the arm's length as real text. An arm wriggles while a pointer rests on it.
 
 ## Dwellers
 

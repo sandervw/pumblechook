@@ -79,6 +79,6 @@ tests/integration/     link checks
 ## 8. Risks
 
 - **Agents cannot judge the look.** Art, motion, and wording wait on their branch for the CEO's yes on the Preview.
-- **The art method is unproven.** Three mockups of one image spec, one per art method, go to the CEO; the chosen method is written here before the scene is built.
+- **The art method is unproven.** Two mockups of one image spec, one per art method, go to the CEO; the chosen method is written here before the scene is built.
 - **Painted art is heavy.** Each composition loads only its own art; the first load stays under 2 MB.
 - **Likeness to the reference book.** No page, character, or composition is copied, traced, or given to an image model.
