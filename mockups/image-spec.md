@@ -33,6 +33,7 @@ What the scene takes from it:
 ## Creature
 
 A kraken, lit from inside. Its body fills the upper-left third of the wide scene and runs off the page. It has two uneven eyes that blink: one very large, one small.
+
 ## Arms
 
 Five thick arms spread from the body toward the right and the bottom. Each has its own thickness, length, and text size. Each arm carries one project: the name, logline, and links run along the arm's length as real text. An arm wriggles while a pointer rests on it.
