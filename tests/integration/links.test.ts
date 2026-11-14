@@ -7,7 +7,7 @@ const SIGN_IN_PATTERN = /login|signin|sign-in|signup|authwall/i;
 
 const { ownerMark, projects } = PORTFOLIO_CONTENT;
 const LINKS = [
-  ownerMark.gitHubLink,
+  ownerMark.profileLink,
   ...projects.map((project) => project.liveSiteLink),
   ...projects.flatMap((project) => project.repositoryLink ?? []),
 ];

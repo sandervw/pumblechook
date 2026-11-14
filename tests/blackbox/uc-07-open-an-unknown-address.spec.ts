@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { owner, projects } from "./support/content";
+import { ownerMark, projects } from "./support/content";
 
 for (const extraPath of ["/squid", "/deep/sea/anything"]) {
   test(`UC-07 ${extraPath} shows the same scene as the root`, async ({
@@ -12,7 +12,7 @@ for (const extraPath of ["/squid", "/deep/sea/anything"]) {
     await page.goto(extraPath);
     await expect(page).toHaveTitle(rootTitle);
     expect(await page.locator("body").innerText()).toBe(rootWords);
-    await expect(page.getByText(owner.name, { exact: true })).toBeVisible();
+    await expect(page.getByText(ownerMark.name, { exact: true })).toBeVisible();
     for (const project of projects) {
       const nameLink = page.getByRole("link", {
         name: project.name,

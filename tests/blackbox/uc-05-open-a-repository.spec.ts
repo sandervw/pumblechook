@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
-import { owner, projects } from "./support/content";
+import { ownerMark, projects } from "./support/content";
 import { followAndReturn, linkTo, stubOutsideSites } from "./support/visitor";
 
-const publicProjects = projects.filter((project) => project.repository);
+const publicProjects = projects.filter((project) => project.repositoryLink);
 
 for (const project of publicProjects) {
   test(`UC-05 ${project.name} offers its repository link`, async ({
@@ -11,7 +11,7 @@ for (const project of publicProjects) {
   }) => {
     await stubOutsideSites(page, baseURL ?? "http://localhost:8787");
     await page.goto("/");
-    const address = project.repository ?? "";
+    const address = project.repositoryLink ?? "";
     const codeLink = linkTo(page, address);
 
     await page.getByRole("link", { name: project.name, exact: true }).hover();
@@ -28,10 +28,10 @@ test("UC-05 private projects offer no repository link", async ({ page }) => {
   await expect(codeLinks).toHaveCount(publicProjects.length);
 
   // Every repository-looking link belongs to a public project.
-  const allowed = publicProjects.map((project) => project.repository);
+  const allowed = publicProjects.map((project) => project.repositoryLink);
   for (const link of await page.getByRole("link").all()) {
     const address = (await link.getAttribute("href")) ?? "";
-    if (address.startsWith(`${owner.github}/`)) {
+    if (address.startsWith(`${ownerMark.profileLink}/`)) {
       expect(allowed).toContain(address);
     }
   }

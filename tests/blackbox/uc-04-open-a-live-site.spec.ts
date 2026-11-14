@@ -12,6 +12,6 @@ for (const project of projects) {
     const nameLink = page.getByRole("link", { name: project.name, exact: true });
 
     await nameLink.hover();
-    await followAndReturn(page, nameLink, project.liveSite);
+    await followAndReturn(page, nameLink, project.liveSiteLink);
   });
 }

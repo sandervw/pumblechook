@@ -6,7 +6,7 @@ export const PORTFOLIO_CONTENT: Portfolio = {
     name: "Sander VanWilligen",
     tag: "Developer Portfolio",
     bio: "The squeaky wheel gets the cheese.",
-    gitHubLink: "https://github.com/sandervw",
+    profileLink: "https://github.com/sandervw",
   },
   projects: [
     {

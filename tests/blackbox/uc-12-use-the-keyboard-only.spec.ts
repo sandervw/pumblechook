@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { owner, projects } from "./support/content";
+import { ownerMark, projects } from "./support/content";
 import { stubOutsideSites } from "./support/visitor";
 
 interface TabStop {
@@ -38,8 +38,8 @@ async function tabThroughPage(page: Page): Promise<TabStop[]> {
 async function expectProjectReadable(page: Page, address: string) {
   const project = projects.find(
     (candidate) =>
-      normalise(candidate.liveSite) === address ||
-      (candidate.repository && normalise(candidate.repository) === address),
+      normalise(candidate.liveSiteLink) === address ||
+      (candidate.repositoryLink && normalise(candidate.repositoryLink) === address),
   );
   if (!project) return;
   const nameLink = page.getByRole("link", { name: project.name, exact: true });
@@ -54,11 +54,11 @@ test("UC-12 Tab visits every link in sheet order with a mark", async ({
   const stops = await tabThroughPage(page);
   const visited = stops.map((stop) => stop.address);
 
-  const liveSites = projects.map((project) => normalise(project.liveSite));
+  const liveSites = projects.map((project) => normalise(project.liveSiteLink));
   const repositories = projects
-    .flatMap((project) => (project.repository ? [project.repository] : []))
+    .flatMap((project) => (project.repositoryLink ? [project.repositoryLink] : []))
     .map(normalise);
-  for (const address of [...liveSites, ...repositories, normalise(owner.github)]) {
+  for (const address of [...liveSites, ...repositories, normalise(ownerMark.profileLink)]) {
     expect(visited).toContain(address);
   }
 
@@ -91,5 +91,5 @@ test("UC-12 Enter on a focused link opens it", async ({ page, baseURL }) => {
   }
   await expect(nameLink).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(normalise(firstProject.liveSite));
+  await expect(page).toHaveURL(normalise(firstProject.liveSiteLink));
 });

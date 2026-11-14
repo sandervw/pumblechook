@@ -56,7 +56,7 @@ for (const badLink of ["http://gufime.com", "gufime.com", "/gufime", "https://"]
 }
 
 test("every broken rule is listed at once", () => {
-  const ownerMark = { ...PORTFOLIO_CONTENT.ownerMark, gitHubLink: "github.com/sandervw" };
+  const ownerMark = { ...PORTFOLIO_CONTENT.ownerMark, profileLink: "github.com/sandervw" };
   const content = { ...withFirstProject({ ...FIRST_PROJECT, name: "Wordleaves", logline: "" }), ownerMark };
 
   assert.deepEqual(parsePortfolio(content), [
