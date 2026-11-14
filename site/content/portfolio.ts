@@ -7,7 +7,6 @@ export const PORTFOLIO_CONTENT: Portfolio = {
     tag: "Developer Portfolio",
     bio: "The squeaky wheel gets the cheese.",
     gitHubLink: "https://github.com/sandervw",
-    linkedInLink: "https://www.linkedin.com/in/sandervw/",
   },
   projects: [
     {

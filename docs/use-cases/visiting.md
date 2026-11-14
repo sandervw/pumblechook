@@ -10,7 +10,7 @@
 
 **UC-05 Open a repository.** Steps: reach each project's arm and look for a repository link; follow each one found. Expected: each project with a repository in the content sheet offers a repository link that goes to that address; each project marked "none (private)" offers no repository link.
 
-**UC-06 Meet the owner.** Steps: look over the scene; follow the GitHub link, go back, follow the LinkedIn link. Expected: the owner's name and bio can be read inside the picture, word for word as in the content sheet; each profile link goes to its address from the content sheet.
+**UC-06 Meet the owner.** Steps: look over the scene; follow the GitHub link. Expected: the owner's name and bio can be read inside the picture, word for word as in the content sheet; the profile link goes to its address from the content sheet.
 
 **UC-07 Open an unknown address.** Steps: open the site with any extra path, such as `/squid`. Expected: the scene appears, the same as at the root address.
 

@@ -58,8 +58,7 @@ test("UC-12 Tab visits every link in sheet order with a mark", async ({
   const repositories = projects
     .flatMap((project) => (project.repository ? [project.repository] : []))
     .map(normalise);
-  const profiles = [owner.github, owner.linkedin].map(normalise);
-  for (const address of [...liveSites, ...repositories, ...profiles]) {
+  for (const address of [...liveSites, ...repositories, normalise(owner.github)]) {
     expect(visited).toContain(address);
   }
 

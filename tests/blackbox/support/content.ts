@@ -12,7 +12,6 @@ export const owner = {
   tag: "Developer Portfolio",
   bio: "The squeaky wheel gets the cheese.",
   github: "https://github.com/sandervw",
-  linkedin: "https://www.linkedin.com/in/sandervw/",
 };
 
 export const projects: Project[] = [

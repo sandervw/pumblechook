@@ -26,7 +26,6 @@ test("UC-13 each link is named for where it goes", async ({ page }) => {
   await page.goto("/");
 
   await expect(linkTo(page, owner.github)).toHaveAccessibleName(/github/i);
-  await expect(linkTo(page, owner.linkedin)).toHaveAccessibleName(/linkedin/i);
   for (const project of projects) {
     await expect(linkTo(page, project.liveSite)).toHaveAccessibleName(
       project.name,

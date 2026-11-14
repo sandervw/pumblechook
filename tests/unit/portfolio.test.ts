@@ -56,12 +56,12 @@ for (const badLink of ["http://gufime.com", "gufime.com", "/gufime", "https://"]
 }
 
 test("every broken rule is listed at once", () => {
-  const ownerMark = { ...PORTFOLIO_CONTENT.ownerMark, linkedInLink: "linkedin.com" };
+  const ownerMark = { ...PORTFOLIO_CONTENT.ownerMark, gitHubLink: "github.com/sandervw" };
   const content = { ...withFirstProject({ ...FIRST_PROJECT, name: "Wordleaves", logline: "" }), ownerMark };
 
   assert.deepEqual(parsePortfolio(content), [
     { rule: "Project names are unique", badValue: "Wordleaves" },
     { rule: "A logline has one to 25 words", badValue: "" },
-    { rule: "Every link is an absolute https URL", badValue: "linkedin.com" },
+    { rule: "Every link is an absolute https URL", badValue: "github.com/sandervw" },
   ]);
 });

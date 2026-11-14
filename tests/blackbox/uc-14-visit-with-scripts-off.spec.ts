@@ -14,7 +14,6 @@ test("UC-14 with scripts off everything reads and links open", async ({
   await expect(page.getByText(owner.name, { exact: true })).toBeVisible();
   await expect(page.getByText(owner.bio)).toBeVisible();
   await expect(linkTo(page, owner.github)).toBeVisible();
-  await expect(linkTo(page, owner.linkedin)).toBeVisible();
   for (const project of projects) {
     await expect(linkTo(page, project.liveSite)).toHaveText(project.name);
     await expect(page.getByText(project.logline)).toBeVisible();

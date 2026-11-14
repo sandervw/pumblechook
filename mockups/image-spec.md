@@ -1,6 +1,6 @@
 # Image spec
 
-The one scene every mockup builds. The CEO has signed off the wide layout in `mockups/wide-wireframe.png`. The CEO has signed off the look in `mockups/cut-paper/`. The fonts are placeholders.
+The one scene every mockup builds. The CEO has signed off the wide layout in `mockups/wide-wireframe.png`. The CEO has signed off the look in `mockups/cut-paper/`.
 
 ## Style: Lane Smith
 
@@ -14,6 +14,8 @@ Lane Smith traits to hit:
 - **Lighting:** forms glow from inside, bright at the centre and falling to dark at the rim. Heavy vignettes. Hard black silhouettes against a lit ground.
 - **Figures:** lumpy, simple bodies; heavy-lidded eyes with tiny pupils; thin spidery lines for whiskers, hair, and legs. Deadpan and a little grumpy.
 - **Type:** blackletter display for names, letter-spaced and set off-kilter. Old-style serif for sentences, in mixed sizes. Ornamental brackets around a label.
+
+The scene's fonts are Grenze Gotisch SemiBold for names and IM Fell DW Pica for sentences, both hosted in `public/fonts/`.
 
 ## Prompt wording
 
@@ -69,7 +71,7 @@ Six to ten lime-green fish slide back and forth in one patch of water, turning r
 
 ## Owner's mark
 
-One large whale's rib lies low in the sea floor at the lower right, its wide end buried in a mound. It rises in a shallow curve and leaves the scene at the right edge. Real text runs along it: the name in large type, the tag beneath it in italics, the bio in quotation marks, and two profile links.
+One large whale's rib lies low in the sea floor at the lower right, its wide end buried in a mound. It rises in a shallow curve and leaves the scene at the right edge. Real text runs along it: the name in large type, the tag beneath it in italics, the bio in quotation marks, and the profile link.
 
 ## Sea floor
 

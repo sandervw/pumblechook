@@ -6,13 +6,12 @@ export interface Project {
   readonly repositoryLink?: string;
 }
 
-/** The owner's name, tag, one-line bio, and profile links. */
+/** The owner's name, tag, one-line bio, and profile link. */
 export interface OwnerMark {
   readonly name: string;
   readonly tag: string;
   readonly bio: string;
   readonly gitHubLink: string;
-  readonly linkedInLink: string;
 }
 
 /** The owner's mark plus the ordered list of projects. */
@@ -69,7 +68,7 @@ function listLinks(portfolio: Portfolio): string[] {
   const projectLinks = portfolio.projects.flatMap((project) =>
     project.repositoryLink === undefined ? [project.liveSiteLink] : [project.liveSiteLink, project.repositoryLink],
   );
-  return [portfolio.ownerMark.gitHubLink, portfolio.ownerMark.linkedInLink, ...projectLinks];
+  return [portfolio.ownerMark.gitHubLink, ...projectLinks];
 }
 
 /** Return the portfolio, or every rule its content breaks. */

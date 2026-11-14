@@ -35,7 +35,7 @@ A shell calls contexts in turn and passes plain values; it makes no rule of its 
 
 - **Portfolio:** an owner's mark and an ordered list of exactly five uniquely named projects, one per arm. The order is the arm order and the keyboard order.
 - **Project:** a name, a logline of one to 25 words, a live site link, and an optional repository link.
-- **OwnerMark:** a name, a tag, a one-line bio, and profile links.
+- **OwnerMark:** a name, a tag, a one-line bio, and a profile link.
 - Every link is an absolute `https` URL.
 
 `parsePortfolio` returns a `Portfolio` or a list of `BrokenRule`.
@@ -47,7 +47,7 @@ No database and no visitor data. Words and art are files in git.
 ## 5. Interfaces
 
 - `GET /` returns the scene. Any other path returns the same page.
-- Project and profile links open in the same tab.
+- Every link opens in the same tab.
 - With `prefers-reduced-motion: reduce`, nothing moves.
 - `public/_headers` sets a Content Security Policy allowing the site's own files and the analytics beacon.
 

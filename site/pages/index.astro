@@ -16,16 +16,25 @@ const { ownerMark, projects } = parsed;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pumblechook</title>
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <style>
+      body {
+        font-family: "IM Fell DW Pica", Georgia, serif;
+      }
+
+      h1,
+      h2 {
+        font-family: "Grenze Gotisch", serif;
+        font-weight: normal;
+      }
+    </style>
   </head>
   <body>
     <main>
       <h1>{ownerMark.name}</h1>
       <p>{ownerMark.tag}</p>
       <p>“{ownerMark.bio}”</p>
-      <ul>
-        <li><a href={ownerMark.gitHubLink}>GitHub</a></li>
-        <li><a href={ownerMark.linkedInLink}>LinkedIn</a></li>
-      </ul>
+      <p><a href={ownerMark.gitHubLink}>GitHub</a></p>
       <ol>
         {
           projects.map((project) => (
