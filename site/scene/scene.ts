@@ -21,12 +21,12 @@ export function runScene(scene: Element, pieces: MovingPieces): void {
   const arms = findArms(scene, pieces.arms);
   const gaze = findEyes(scene, pieces.eyes, Math.random);
   const swarm = findSwarm(scene, pieces.water, Math.random);
-  const moment = { last: 0 };
+  let lastFrame = 0;
 
   /** Draw one frame and ask for the next. */
   function animate(time: number): void {
-    const elapsed = Math.min(time - moment.last, LONGEST_STEP);
-    moment.last = time;
+    const elapsed = Math.min(time - lastFrame, LONGEST_STEP);
+    lastFrame = time;
     if (!stillness.matches) {
       drift(arms, elapsed);
       slideSwarm(swarm, pieces.water, elapsed, Math.random);

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { projects } from "./support/content";
-import { countWords } from "./support/visitor";
+import { countWords, reachArm } from "./support/visitor";
 
 for (const project of projects) {
   test(`UC-03 ${project.name} logline reads word for word`, async ({
@@ -12,7 +12,7 @@ for (const project of projects) {
     const logline = page.getByText(project.logline);
 
     // Reach the arm by pointing at it.
-    await nameLink.hover();
+    await reachArm(page, nameLink);
     await expect(nameLink).toBeVisible();
     await expect(logline).toBeVisible();
     expect(countWords(project.logline)).toBeLessThanOrEqual(25);
