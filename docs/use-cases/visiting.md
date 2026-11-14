@@ -1,6 +1,6 @@
 # Visiting
 
-**UC-01 See the scene.** Steps: open the site in a desktop window. Expected: one picture fills the window's width or its height, with one creature in its upper-left corner; the page does not scroll sideways; the browser tab title names the owner.
+**UC-01 See the scene.** Steps: open the site in a desktop window. Expected: one picture fills the window's width or its height, with one creature in its upper-left corner; the page does not scroll sideways; the browser tab title reads "Pumblechook".
 
 **UC-02 Find the five projects.** Steps: reach each arm in turn. Expected: five arms carry a project, one each; the five project names match the content sheet, and none appears twice.
 

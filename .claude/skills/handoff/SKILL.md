@@ -10,7 +10,7 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 ## State
 
 - The page is the wide scene, `site/compositions/Wide.astro`. The build prints every piece, name, logline, and link into static HTML; the scripts in `site/scene/` only move them. CI runs every command in `CLAUDE.md`.
-- Issue 4, the wide scene, waits on branch `wide-scene` for the CEO's yes on its Preview. Issues 5 and 6 remain.
+- The CEO signed off the wide scene's look and motion, with every logline always visible. Two `mvp` issues remain: 5 and 6.
 - The fonts are Grenze Gotisch SemiBold for names and IM Fell DW Pica for sentences, hosted in `public/fonts/`.
 - The `pumblechook` Worker exists in Cloudflare, with Preview builds on.
 - The wide layout is signed off: a kraken in the upper-left corner, with each project's text running along an arm. See `mockups/wide-wireframe.png` and `mockups/image-spec.md`.
@@ -20,9 +20,8 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 
 ## Next
 
-1. The CEO's yes on the wide scene's Preview, then merge issue 4.
-2. Issue 5, the tall scene. It waits on its branch for the CEO's eye.
-3. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
+1. Issue 5, the tall scene. It waits on its branch for the CEO's eye.
+2. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
 
 ## Parked
 

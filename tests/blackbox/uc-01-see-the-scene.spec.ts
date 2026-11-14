@@ -1,5 +1,4 @@
 import { expect, test } from "@playwright/test";
-import { ownerMark } from "./support/content";
 import { partOf, pictureArea, shareOfPaint } from "./support/visitor";
 
 const WINDOW = { width: 1280, height: 800 };
@@ -11,7 +10,7 @@ test.use({ viewport: WINDOW });
 
 test("UC-01 one picture fills the desktop window", async ({ page, browser }) => {
   await page.goto("/");
-  await expect(page).toHaveTitle(new RegExp(ownerMark.name));
+  await expect(page).toHaveTitle("Pumblechook");
 
   const picture = await pictureArea(page);
   const fillsWidth = Math.abs(picture.width - WINDOW.width) < 1;
