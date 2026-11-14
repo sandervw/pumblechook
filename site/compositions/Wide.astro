@@ -1,0 +1,209 @@
+---
+import type { Portfolio } from "../../core/portfolio/index.ts";
+import background from "../art/background.jpg";
+import body from "../art/body.webp";
+import fishOne from "../art/fish-1.webp";
+import fishTwo from "../art/fish-2.webp";
+import fishThree from "../art/fish-3.webp";
+import floor from "../art/floor.webp";
+import rib from "../art/rib.webp";
+import rustDark from "../art/rust-dark.jpg";
+import rust from "../art/rust.jpg";
+import weedOne from "../art/weed-1.webp";
+import weedTwo from "../art/weed-2.webp";
+import yellow from "../art/yellow.jpg";
+import { LID_REST, lidPath } from "../scene/eyes.ts";
+import { centreLine, firstWriggle, limbLength, linePath, outlinePath, STILL } from "../scene/limb.ts";
+import "../scene/scene.css";
+import { fishPlace, startSide } from "../scene/swarm.ts";
+import { loadMeasure } from "./measure.ts";
+import Rows from "./Rows.astro";
+import { layOutOwner, layOutProject } from "./rows.ts";
+import { WIDE } from "./wide-layout.ts";
+
+interface Props {
+  portfolio: Portfolio;
+}
+
+// Text stops short of an arm's narrow tip.
+const TEXT_REACH = 0.9;
+// Each painted fish: its art, its size, and its eye.
+const FISH_KINDS = [
+  { art: fishOne, width: 24, height: 11, eye: [4.8, 4.6], eyeRadius: 1.7, lidShift: 3.6 },
+  { art: fishTwo, width: 34, height: 4.3, eye: [4.4, 2.2], eyeRadius: 0.9, lidShift: 1.8 },
+  { art: fishThree, width: 22, height: 13.8, eye: [4.6, 6.2], eyeRadius: 1.5, lidShift: 3.3 },
+].map((kind) => ({ ...kind, left: -kind.width / 2, top: -kind.height / 2 }));
+
+const { ownerMark, projects } = Astro.props.portfolio;
+const measure = loadMeasure();
+const arms = WIDE.arms.map((limb, armIndex) => {
+  const points = centreLine(limb.curve, firstWriggle(armIndex));
+  const room = limbLength(centreLine(limb.curve, STILL)) * TEXT_REACH;
+  return {
+    armIndex,
+    outline: outlinePath(limb, points),
+    line: linePath(points),
+    blocks: layOutProject(projects[armIndex], limb, room, measure),
+  };
+});
+// Later arms lie under earlier ones.
+const papers = arms.toReversed();
+const ribLine = linePath(centreLine(WIDE.rib.curve, STILL));
+const ownerBlocks = layOutOwner(ownerMark, WIDE.rib, WIDE.rib.textEnd, measure);
+const lids = WIDE.eyes.map((eye) => lidPath(eye, LID_REST));
+const swarm = WIDE.water.starts.map((place, fishIndex) => ({
+  kindIndex: fishIndex % FISH_KINDS.length,
+  kind: FISH_KINDS[fishIndex % FISH_KINDS.length],
+  transform: fishPlace(place, startSide(fishIndex)),
+  blinkDelay: `animation-delay: ${(-fishIndex * 2.3).toFixed(1)}s`,
+}));
+---
+
+<svg id="scene" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid meet" role="presentation">
+  <defs>
+    <pattern id="rust" patternUnits="userSpaceOnUse" width="960" height="540">
+      <image href={rust.src} width="960" height="540" preserveAspectRatio="xMidYMid slice"></image>
+    </pattern>
+    <pattern id="rust-dark" patternUnits="userSpaceOnUse" width="960" height="540">
+      <image href={rustDark.src} width="960" height="540" preserveAspectRatio="xMidYMid slice"></image>
+    </pattern>
+    <pattern id="yellow" patternUnits="userSpaceOnUse" width="240" height="240">
+      <image href={yellow.src} width="240" height="240"></image>
+    </pattern>
+    <!-- Wobbles an edge like scissors, then drops a paper shadow. -->
+    <filter id="cut" x="-10%" y="-10%" width="120%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4" result="wobble"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="wobble" scale="6" xChannelSelector="R" yChannelSelector="G" result="cut"></feDisplacementMap>
+      <feDropShadow in="cut" dx="2" dy="4" stdDeviation="3.5" flood-color="#000" flood-opacity="0.6"></feDropShadow>
+    </filter>
+    <filter id="bone" x="-20%" y="-20%" width="140%" height="150%">
+      <feComponentTransfer result="pale">
+        <feFuncR type="linear" slope="1.18"></feFuncR>
+        <feFuncG type="linear" slope="1.18"></feFuncG>
+        <feFuncB type="linear" slope="1.18"></feFuncB>
+      </feComponentTransfer>
+      <feDropShadow in="pale" dx="1" dy="3" stdDeviation="2.5" flood-color="#000" flood-opacity="0.6"></feDropShadow>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="1" dy="3" stdDeviation="2.5" flood-color="#000" flood-opacity="0.6"></feDropShadow>
+    </filter>
+
+    <radialGradient id="glow" gradientUnits="userSpaceOnUse" cx="150" cy="140" r="820">
+      <stop offset="0" stop-color="#ffc45a" stop-opacity="0.78"></stop>
+      <stop offset="0.22" stop-color="#ff8a2a" stop-opacity="0.3"></stop>
+      <stop offset="0.6" stop-color="#2a0500" stop-opacity="0.12"></stop>
+      <stop offset="1" stop-color="#150200" stop-opacity="0.62"></stop>
+    </radialGradient>
+    <radialGradient id="eye-glow">
+      <stop offset="0" stop-color="#fff6a8" stop-opacity="0.85"></stop>
+      <stop offset="0.6" stop-color="#ffc21f" stop-opacity="0.1"></stop>
+      <stop offset="1" stop-color="#7a3a00" stop-opacity="0.65"></stop>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.45" cy="0.45" r="0.75">
+      <stop offset="0.45" stop-color="#000" stop-opacity="0"></stop>
+      <stop offset="1" stop-color="#000" stop-opacity="0.72"></stop>
+    </radialGradient>
+
+    <mask id="body-shape" style="mask-type: alpha">
+      <image href={body.src} x="-390" y="-530" width="780" height="530" preserveAspectRatio="none" transform="translate(-115 -125) rotate(135)"></image>
+    </mask>
+    {
+      FISH_KINDS.map((kind, kindIndex) => (
+        <clipPath id={`fish-eye-${kindIndex}`}>
+          <circle cx={kind.left + kind.eye[0]} cy={kind.top + kind.eye[1]} r={kind.eyeRadius} />
+        </clipPath>
+      ))
+    }
+  </defs>
+
+  <g aria-hidden="true">
+    <image href={background.src} width="960" height="540" preserveAspectRatio="xMidYMid slice"></image>
+    <image class="light" href={background.src} width="960" height="540" preserveAspectRatio="xMidYMid slice"></image>
+    <g filter="url(#shadow)">
+      {
+        swarm.map((fish) => (
+          <g class="fish" transform={fish.transform}>
+            <image href={fish.kind.art.src} x={fish.kind.left} y={fish.kind.top} width={fish.kind.width} height={fish.kind.height} />
+            <image
+              class="fish-lid"
+              href={fish.kind.art.src}
+              x={fish.kind.left - fish.kind.lidShift}
+              y={fish.kind.top}
+              width={fish.kind.width}
+              height={fish.kind.height}
+              clip-path={`url(#fish-eye-${fish.kindIndex})`}
+              style={fish.blinkDelay}
+            />
+          </g>
+        ))
+      }
+    </g>
+    <image href={rib.src} {...WIDE.rib.art} filter="url(#bone)"></image>
+    <g transform="translate(-10 384) scale(0.638)" filter="url(#shadow)">
+      <image href={floor.src} width="1536" height="307"></image>
+      <image class="weed" href={weedOne.src} width="156" height="158"></image>
+      <image class="weed" href={weedTwo.src} x="1322" width="178" height="166"></image>
+    </g>
+  </g>
+
+  <g class="words owner" transform="translate(0 -11)">
+    <path id="rib-line" d={ribLine} fill="none"></path>
+    <Rows blocks={ownerBlocks} lineId="rib-line" />
+  </g>
+
+  <g aria-hidden="true">
+    {
+      papers.map((arm) => (
+        <g class="paper" data-arm={arm.armIndex} filter="url(#cut)">
+          <path d={arm.outline} fill="url(#rust-dark)" />
+          <path d={arm.outline} fill="url(#glow)" />
+        </g>
+      ))
+    }
+  </g>
+
+  <g class="words" role="list">
+    {
+      arms.map((arm) => (
+        <g role="listitem" data-arm={arm.armIndex}>
+          <path id={`arm-${arm.armIndex}-line`} d={arm.line} fill="none" />
+          <Rows blocks={arm.blocks} lineId={`arm-${arm.armIndex}-line`} />
+        </g>
+      ))
+    }
+  </g>
+
+  <g aria-hidden="true" pointer-events="none">
+    <g filter="url(#shadow)">
+      <g mask="url(#body-shape)">
+        <rect x="-20" y="-20" width="440" height="420" fill="url(#rust)"></rect>
+        <rect x="-20" y="-20" width="440" height="420" fill="url(#glow)"></rect>
+      </g>
+    </g>
+    {
+      WIDE.eyes.map((eye, eyeIndex) => (
+        <>
+          <circle cx={eye.centre[0]} cy={eye.centre[1]} r={eye.radius} fill="url(#yellow)" filter="url(#shadow)" />
+          <circle cx={eye.centre[0]} cy={eye.centre[1]} r={eye.radius} fill="url(#eye-glow)" />
+          <circle cx={eye.pupil[0]} cy={eye.pupil[1]} r={eye.pupilRadius} fill="#17110b" />
+          <g class="lid" filter="url(#shadow)">
+            <path d={lids[eyeIndex]} fill="url(#rust-dark)" />
+            <path d={lids[eyeIndex]} fill="url(#glow)" />
+          </g>
+        </>
+      ))
+    }
+    <rect width="960" height="540" fill="url(#vignette)"></rect>
+  </g>
+</svg>
+
+<script>
+  import { runScene } from "../scene/scene.ts";
+  import { WIDE } from "./wide-layout.ts";
+
+  const scene = document.querySelector("#scene");
+  if (!scene) {
+    throw new Error("The page lacks its #scene picture.");
+  }
+  runScene(scene, WIDE);
+</script>

@@ -1,5 +1,6 @@
 ---
 import { parsePortfolio } from "../../core/portfolio/index.ts";
+import Wide from "../compositions/Wide.astro";
 import { PORTFOLIO_CONTENT } from "../content/portfolio.ts";
 
 const parsed = parsePortfolio(PORTFOLIO_CONTENT);
@@ -7,7 +8,6 @@ if (Array.isArray(parsed)) {
   const complaints = parsed.map((broken) => `${broken.rule}: "${broken.badValue}"`);
   throw new Error(`The content breaks the portfolio rules.\n${complaints.join("\n")}`);
 }
-const { ownerMark, projects } = parsed;
 ---
 
 <!doctype html>
@@ -15,45 +15,12 @@ const { ownerMark, projects } = parsed;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pumblechook</title>
+    <title>Pumblechook: {parsed.ownerMark.name}</title>
     <link rel="stylesheet" href="/fonts/fonts.css" />
-    <style>
-      body {
-        font-family: "IM Fell DW Pica", Georgia, serif;
-      }
-
-      h1,
-      h2 {
-        font-family: "Grenze Gotisch", serif;
-        font-weight: normal;
-      }
-    </style>
   </head>
   <body>
     <main>
-      <h1>{ownerMark.name}</h1>
-      <p>{ownerMark.tag}</p>
-      <p>“{ownerMark.bio}”</p>
-      <p><a href={ownerMark.profileLink}>GitHub</a></p>
-      <ol>
-        {
-          projects.map((project) => (
-            <li>
-              <h2>
-                <a href={project.liveSiteLink}>{project.name}</a>
-              </h2>
-              <p>
-                {project.logline}{" "}
-                {project.repositoryLink && (
-                  <a href={project.repositoryLink} aria-label={`${project.name} (code)`}>
-                    <i>(code)</i>
-                  </a>
-                )}
-              </p>
-            </li>
-          ))
-        }
-      </ol>
+      <Wide portfolio={parsed} />
     </main>
   </body>
 </html>
