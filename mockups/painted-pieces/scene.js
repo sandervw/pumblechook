@@ -1,9 +1,10 @@
 // Painted pieces: each piece is one whole painted picture.
 
-import { EYES, RIB, fishSpots } from "../shared/layout.js";
+import { EYES, RIB } from "../shared/layout.js";
 import { centreLine, limbLength, linePath } from "../shared/limb.js";
-import { drawRows, layOutRows, loadMeasure } from "../shared/rows.js";
+import { drawRows, layOutOwner, layOutProject, loadMeasure } from "../shared/rows.js";
 import { addShape } from "../shared/svg.js";
+import { buildSwarm, slideSwarm } from "../shared/swarm.js";
 import { OWNER, PROJECTS } from "../shared/words.js";
 
 const STILL = { strength: 0, phase: 0 };
@@ -18,7 +19,7 @@ const PLACES = [
   { root: [240, 200], tip: [800, 352], thickness: 190, nameSize: 18, textSize: 12 },
   { root: [180, 250], tip: [600, 432], thickness: 160, nameSize: 15, textSize: 11 },
   { root: [100, 285], tip: [520, 560], thickness: 230, nameSize: 18, textSize: 12 },
-];
+].map((place) => ({ ...place, textStart: 62 }));
 
 /** Place one painted arm and write its words along it. */
 function buildArm(parent, place, index, measure) {
@@ -36,7 +37,7 @@ function buildArm(parent, place, index, measure) {
     filter: "url(#shadow)",
   });
   addShape(sway, "path", { id: `arm-${index + 1}-line`, d: `M 0 0 L ${reach} 0`, fill: "none" });
-  drawRows(sway, layOutRows(PROJECTS[index], place, reach * TEXT_REACH, measure), `arm-${index + 1}-line`);
+  drawRows(sway, layOutProject(PROJECTS[index], place, reach * TEXT_REACH, measure), `arm-${index + 1}-line`);
 }
 
 /** Place one painted eye under a lid that slides shut. */
@@ -68,16 +69,17 @@ for (const index of [4, 3, 2, 1, 0]) {
 }
 const ribLine = centreLine(RIB, STILL);
 const ribGroup = document.querySelector("#rib");
+addShape(document.querySelector("#rib-art"), "image", { href: "art/rib.webp", ...RIB.art, filter: "url(#shadow)" });
 addShape(ribGroup, "path", { id: "rib-line", d: linePath(ribLine), fill: "none" });
-drawRows(ribGroup, layOutRows(OWNER, RIB, limbLength(ribLine), measure), "rib-line");
+drawRows(ribGroup, layOutOwner(OWNER, RIB, limbLength(ribLine) - 30, measure), "rib-line");
 EYES.forEach((eye, index) => buildEye(document.querySelector("#eyes"), eye, index));
-fishSpots().forEach((fish, count) => {
-  addShape(document.querySelector("#swarm"), "image", {
-    href: `art/fish-${(count % 3) + 1}.webp`,
-    x: -12,
-    y: -6,
-    width: 24,
-    height: 12,
-    transform: `translate(${fish.across} ${fish.down}) rotate(${fish.tilt}) scale(${fish.scale})`,
-  });
-});
+const swarm = buildSwarm(document.querySelector("#swarm"));
+const moment = { last: 0 };
+
+/** Slide the fish one frame and ask for the next. */
+function animate(time) {
+  slideSwarm(swarm, Math.min(time - moment.last, 100));
+  moment.last = time;
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);

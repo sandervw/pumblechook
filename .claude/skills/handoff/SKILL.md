@@ -13,13 +13,13 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 - Five `mvp` issues hold the remaining work: 2 to 6.
 - The `pumblechook` Worker exists in Cloudflare, with Preview builds on.
 - The wide layout is signed off: a kraken in the upper-left corner, with each project's text running along an arm. See `mockups/wide-wireframe.png` and `mockups/image-spec.md`.
-- Two mockups wait for the CEO's pick: `mockups/cut-paper/` and `mockups/painted-pieces/`. Both are built from separate pieces. Serve them with the `mockups` entry in `.claude/launch.json`.
+- The CEO is tuning the look in `mockups/cut-paper/`: cut-paper arms and eyes over painted pieces, as listed in the image spec. `mockups/painted-pieces/` stays for comparison. Serve them with the `mockups` entry in `.claude/launch.json`.
 - `docs/content.md` is signed off, and the reference screenshots are in `docs/reference/`.
 - Image generation spend is approved up to $10, for the mockup issue only.
 
 ## Next
 
-1. Issues 2 and 3 in one batch on the `mockups-and-words` branch. Issue 2 needs the CEO's pick of an art method, written into `docs/architecture.md`. Issue 3 is the words and links.
+1. Issues 2 and 3 in one batch on the `mockups-and-words` branch. Issue 2 needs the CEO's sign-off of the look, then the art method written into `docs/architecture.md`. The CEO also wants fonts found that suit the Lane Smith style. Issue 3 is the words and links.
 2. Issues 4 and 5, the wide and tall scenes. Each waits on its branch for the CEO's eye.
 3. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
 

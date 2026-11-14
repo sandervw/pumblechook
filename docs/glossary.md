@@ -23,7 +23,7 @@ The ubiquitous language of Pumblechook, one line per term, grouped by bounded co
 - **Piece:** one visible element of the scene.
 - **Texture sheet:** an image of painted surface that pieces are cut from.
 - **Composition:** one arrangement of the scene's pieces. **Wide** suits desktops; **Tall** suits phones.
-- **Wriggle:** an arm's movement while a pointer rests on it.
+- **Wriggle:** an arm's slow, constant movement, which stops while a pointer rests on the arm.
 - **Blink:** an eye closing and reopening on its own.
 - **Wavering light:** the slow shift of light across the scene.
 - **Art method:** the way pieces are made: cut paper, whole painted pieces, or code only.

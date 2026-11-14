@@ -24,43 +24,53 @@ body {
   fill: #2b2118;
 }
 
-.words a text {
-  text-decoration: underline;
+.owner .tag {
+  fill: #9a2d14;
+  font-style: italic;
+}
+
+.words a {
   cursor: pointer;
 }
 
+.words .link,
+.words .code {
+  text-decoration: underline;
+}
+
+.words .code {
+  font-style: italic;
+}
+
 .words a:hover text,
-.words a:focus text {
+.words a:focus text,
+.words a:hover .code,
+.words a:focus .code {
   fill: #ffd34a;
 }
 
 .owner a:hover text,
 .owner a:focus text {
-  fill: #8a1f0c;
+  fill: #9a2d14;
 }
 
-#light {
-  filter: blur(14px);
+.weed {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: sway-weed 19s ease-in-out infinite alternate;
 }
 
-.shaft {
-  animation: waver 9s ease-in-out infinite alternate;
+.weed + .weed {
+  animation-duration: 23s;
+  animation-delay: -7s;
 }
 
-.shaft:nth-child(2) {
-  animation-duration: 13s;
-}
-
-.shaft:nth-child(3) {
-  animation-duration: 17s;
-}
-
-@keyframes waver {
+@keyframes sway-weed {
   from {
-    opacity: 0.25;
+    transform: skewX(-7deg);
   }
 
   to {
-    opacity: 1;
+    transform: skewX(7deg);
   }
 }

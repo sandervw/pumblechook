@@ -1,43 +1,71 @@
-// Cut paper: painted sheets, cut by outlines drawn here.
+// Cut-paper arms, eyes, and colour over painted pieces.
 
-import { ARMS, EYES, RIB, fishSpots } from "../shared/layout.js";
+import { ARMS, EYES, RIB } from "../shared/layout.js";
 import { centreLine, limbLength, linePath, outlinePath } from "../shared/limb.js";
-import { drawRows, layOutRows, loadMeasure } from "../shared/rows.js";
+import { drawRows, layOutOwner, layOutProject, loadMeasure } from "../shared/rows.js";
 import { addShape } from "../shared/svg.js";
+import { buildSwarm, slideSwarm } from "../shared/swarm.js";
 import { OWNER, PROJECTS } from "../shared/words.js";
 
 const STILL = { strength: 0, phase: 0 };
+// Text stops short of the narrow tip.
+const TEXT_REACH = 0.9;
 const LID_REST = 0.42;
-const BLINK_EVERY = 4300;
-const BLINK_LASTS = 280;
+const BLINK_LASTS = 650;
 
-/** Move a limb's paint, shade, and text line to a pose. */
-function pose(piece, wriggle) {
-  const points = centreLine(piece.limb, wriggle);
-  const outline = outlinePath(piece.limb, points);
-  piece.paint.setAttribute("d", outline);
-  piece.shade.setAttribute("d", outline);
-  piece.line.setAttribute("d", linePath(points));
+/** Redraw an arm's paint, shade, and text line. */
+function pose(arm) {
+  const points = centreLine(arm.limb, { strength: 1, phase: arm.phase });
+  const outline = outlinePath(arm.limb, points);
+  arm.paint.setAttribute("d", outline);
+  arm.shade.setAttribute("d", outline);
+  arm.line.setAttribute("d", linePath(points));
 }
 
-/** Cut one limb from a sheet and write its words. */
-function buildLimb(parent, entry, measure) {
+/** Cut one arm from a sheet and write its project along it. */
+function buildArm(parent, index, measure) {
+  const limb = ARMS[index];
   const group = addShape(parent, "g", {});
   const paper = addShape(group, "g", { filter: "url(#cut)" });
-  const piece = {
-    limb: entry.limb,
-    paint: addShape(paper, "path", { fill: `url(#${entry.sheet})` }),
-    shade: addShape(paper, "path", { fill: `url(#${entry.shade})` }),
-    line: addShape(group, "path", { id: `${entry.id}-line`, fill: "none" }),
-    strength: 0,
+  const arm = {
+    limb,
+    paint: addShape(paper, "path", { fill: "url(#rust-dark)" }),
+    shade: addShape(paper, "path", { fill: "url(#glow)" }),
+    line: addShape(group, "path", { id: `arm-${index}-line`, fill: "none" }),
+    phase: index * 1.3,
+    pace: 0.00045 + index * 0.00006,
+    flow: 1,
     held: false,
   };
-  pose(piece, STILL);
-  const room = limbLength(centreLine(entry.limb, STILL));
-  drawRows(group, layOutRows(entry.words, entry.limb, room, measure), `${entry.id}-line`);
-  group.addEventListener("pointerenter", () => (piece.held = true));
-  group.addEventListener("pointerleave", () => (piece.held = false));
-  return piece;
+  pose(arm);
+  const room = limbLength(centreLine(limb, STILL)) * TEXT_REACH;
+  drawRows(group, layOutProject(PROJECTS[index], limb, room, measure), `arm-${index}-line`);
+  for (const [event, held] of [["pointerenter", true], ["pointerleave", false], ["focusin", true], ["focusout", false]]) {
+    group.addEventListener(event, () => {
+      arm.held = held;
+    });
+  }
+  return arm;
+}
+
+/** Let each arm drift, and bring a held arm to rest. */
+function drift(arms, elapsed) {
+  for (const arm of arms) {
+    arm.flow += ((arm.held ? 0 : 1) - arm.flow) * 0.08;
+    if (arm.flow > 0.002) {
+      arm.phase += elapsed * arm.pace * arm.flow;
+      pose(arm);
+    }
+  }
+}
+
+/** Place the painted rib and write the owner's mark along it. */
+function buildRib(measure) {
+  addShape(document.querySelector("#rib-art"), "image", { href: "../painted-pieces/art/rib.webp", ...RIB.art, filter: "url(#shadow)" });
+  const points = centreLine(RIB, STILL);
+  const group = document.querySelector("#rib");
+  addShape(group, "path", { id: "rib-line", d: linePath(points), fill: "none" });
+  drawRows(group, layOutOwner(OWNER, RIB, limbLength(points) - 30, measure), "rib-line");
 }
 
 /** Return the lid's outline when it covers part of an eye. */
@@ -65,49 +93,41 @@ function buildEye(parent, eye) {
   };
 }
 
-/** Set a lid for this moment of the blink cycle. */
-function blink(lid, time) {
-  const beat = (time + lid.eye.delay) % BLINK_EVERY;
-  const shut = beat < BLINK_LASTS ? Math.sin((Math.PI * beat) / BLINK_LASTS) : 0;
-  const outline = lidPath(lid.eye, LID_REST + (1 - LID_REST) * shut);
-  lid.paint.setAttribute("d", outline);
-  lid.shade.setAttribute("d", outline);
+/** Return when each eye next starts to blink. */
+function planBlink(time) {
+  const start = time + 6000 + Math.random() * 7000;
+  return EYES.map(() => start + Math.random() * 320);
 }
 
-/** Ease each arm toward its wriggle and redraw the moving ones. */
-function wriggle(arms, time) {
-  for (const arm of arms) {
-    arm.strength += ((arm.held ? 1 : 0) - arm.strength) * 0.07;
-    if (arm.strength > 0.002) {
-      pose(arm, { strength: arm.strength, phase: time * 0.006 });
-    }
-  }
+/** Set each lid for this moment of its blink. */
+function blink(lids, starts, time) {
+  lids.forEach((lid, index) => {
+    const beat = time - starts[index];
+    const shut = beat > 0 && beat < BLINK_LASTS ? Math.sin((Math.PI * beat) / BLINK_LASTS) : 0;
+    const outline = lidPath(lid.eye, LID_REST + (1 - LID_REST) * shut);
+    lid.paint.setAttribute("d", outline);
+    lid.shade.setAttribute("d", outline);
+  });
 }
 
 const measure = await loadMeasure();
 const armsGroup = document.querySelector("#arms");
-const armEntries = ARMS.map((limb, index) => ({
-  limb,
-  id: `arm-${index + 1}`,
-  sheet: "rust-dark",
-  shade: "glow",
-  words: PROJECTS[index],
-}));
-const arms = armEntries.toReversed().map((entry) => buildLimb(armsGroup, entry, measure));
-const ribEntry = { limb: RIB, id: "rib", sheet: "bone", shade: "rib-shade", words: OWNER };
-buildLimb(document.querySelector("#rib"), ribEntry, measure);
+const arms = [4, 3, 2, 1, 0].map((index) => buildArm(armsGroup, index, measure));
+buildRib(measure);
 const lids = EYES.map((eye) => buildEye(document.querySelector("#eyes"), eye));
-for (const fish of fishSpots()) {
-  const place = `translate(${fish.across} ${fish.down}) rotate(${fish.tilt}) scale(${fish.scale})`;
-  addShape(document.querySelector("#swarm"), "use", { href: "#fish", transform: place });
-}
+const swarm = buildSwarm(document.querySelector("#swarm"));
+const moment = { last: 0, blinks: planBlink(0) };
 
 /** Draw one frame and ask for the next. */
 function animate(time) {
-  wriggle(arms, time);
-  for (const lid of lids) {
-    blink(lid, time);
+  const elapsed = Math.min(time - moment.last, 100);
+  moment.last = time;
+  drift(arms, elapsed);
+  slideSwarm(swarm, elapsed);
+  if (time > Math.max(...moment.blinks) + BLINK_LASTS) {
+    moment.blinks = planBlink(time);
   }
+  blink(lids, moment.blinks, time);
   requestAnimationFrame(animate);
 }
 requestAnimationFrame(animate);

@@ -1,6 +1,6 @@
 # Image spec
 
-The one scene every mockup builds. The CEO has signed off the wide layout in `mockups/wide-wireframe.png`. The painted look is still open.
+The one scene every mockup builds. The CEO has signed off the wide layout in `mockups/wide-wireframe.png`. `mockups/cut-paper/` holds the look so far; the CEO has not signed it off.
 
 ## Style: Lane Smith
 
@@ -32,13 +32,13 @@ Words that hold the look:
 
 The scene is a stack of separate pieces:
 
-- The background.
-- The sea floor.
-- The whale's rib.
-- Five arms.
-- The body.
-- Two eyes, each an eyeball under its own lid.
-- Two or three fish cutouts, repeated to make the swarm.
+- The background: painted whole.
+- The sea floor: painted whole, with each clump of weed as its own piece.
+- The whale's rib: painted whole.
+- Five arms: cut from a painted sheet by outlines drawn in code.
+- The body: the outline of a painted piece, filled from a painted sheet.
+- Two eyes, each an eyeball under its own lid: cut from painted sheets.
+- Three painted fish, repeated to make the swarm.
 
 ## Background
 
@@ -57,23 +57,23 @@ What the scene takes from it:
 
 ## Creature
 
-A rust-red kraken, lit from inside. Its body fills the upper-left third of the wide scene and runs off the page. It has two uneven eyes: one very large, one small. Each is a round yellow eyeball with a dark pupil, under a lid that slides down to blink.
+A rust-red kraken, lit from inside. Its body fills the upper-left third of the wide scene and runs off the page. It has two uneven eyes: one very large, one small. Each is a round yellow eyeball with a dark pupil, under a lid that slides down to blink. The eyes blink slowly and seldom, a fraction of a second apart, in no fixed order.
 
 ## Arms
 
-Five thick arms spread from under the body toward the right and the bottom. Each tapers, and none curls. Each has its own thickness, length, and text size. Each arm carries one project: the name, logline, and links run along the arm's length as real text. An arm wriggles while a pointer rests on it.
+Five thick arms spread from under the body toward the right and the bottom. Each tapers, and none curls. Each has its own thickness, length, and text size. Each arm carries one project as real text along its length: the name, which links to the live site, then the logline, then *(code)* in italics for a public repository. Every arm wriggles very slowly all the time, and stops while a pointer rests on it.
 
 ## Dwellers
 
-Two or three, taken from the passage: the swarm of lime-green fish first.
+Six to ten lime-green fish slide back and forth in one patch of water, turning round at each end.
 
 ## Owner's mark
 
-One large whale's rib curves up from the sea floor at the lower right. The name, bio, and two profile links run along its curve as real text.
+One large whale's rib rises out of the sea floor at the lower right and curves up the right edge, its wide end buried. Real text runs along it: the name in large type, the tag beneath it in italics and another colour, the bio in quotation marks, and two profile links.
 
 ## Sea floor
 
-Angled and uneven.
+Painted mounds, angled and uneven. The weed sways very slowly, each clump at its own rate.
 
 ## Open choices
 

@@ -2,9 +2,9 @@
 
 import { addShape } from "./svg.js";
 
-const TEXT_START = 62;
 const NAME_FACE = '"Pirata One", "Old English Text MT", serif';
 const TEXT_FACE = '"IM Fell English", Georgia, serif';
+const CODE_WORD = "(code)";
 
 /** Wait for the fonts, then return a text measurer. */
 export async function loadMeasure() {
@@ -41,20 +41,31 @@ function stack(entries, start, size) {
   }));
 }
 
-/** Place a name, a sentence, and links along a limb. */
-export function layOutRows(content, limb, room, measure) {
-  const name = { text: content.name, start: TEXT_START, size: limb.nameSize, face: NAME_FACE, offset: 0 };
+/** Place a project's linked name and sentence along a limb. */
+export function layOutProject(project, limb, room, measure) {
+  const name = { text: project.name, start: limb.textStart, size: limb.nameSize, face: NAME_FACE, offset: 0, kind: "name", url: project.site };
   const small = { size: limb.textSize, face: TEXT_FACE };
-  const nameEnd = TEXT_START + measure(content.name, name);
-  const linksWidth = Math.max(...content.links.map((link) => measure(link.label, small)));
-  const linksStart = room - linksWidth - 16;
-  const sentenceRows = wrapWords(content.sentence, (text) => measure(text, small), linksStart - nameEnd - 26);
-  const links = content.links.map((link) => ({ text: link.label, url: link.url }));
-  return [
-    name,
-    ...stack(sentenceRows.map((text) => ({ text })), nameEnd + 14, limb.textSize),
-    ...stack(links, linksStart + 4, limb.textSize),
-  ];
+  const sentenceStart = limb.textStart + measure(project.name, name) + 14;
+  const words = project.code ? `${project.sentence} ${CODE_WORD}` : project.sentence;
+  const rows = stack(wrapWords(words, (text) => measure(text, small), room - sentenceStart).map((text) => ({ text })), sentenceStart, limb.textSize);
+  if (project.code) {
+    const last = rows.at(-1);
+    last.text = last.text.slice(0, -CODE_WORD.length);
+    last.tail = { text: CODE_WORD, url: project.code };
+  }
+  return [name, ...rows];
+}
+
+/** Place the owner's name, tag, quote, and links along a limb. */
+export function layOutOwner(owner, limb, room, measure) {
+  const name = { text: owner.name, start: limb.textStart, size: limb.nameSize, face: NAME_FACE, offset: -limb.textSize * 0.5, kind: "name" };
+  const tag = { text: owner.tag, start: limb.textStart + 2, size: limb.textSize, face: TEXT_FACE, offset: limb.nameSize * 0.5 + 3, kind: "tag" };
+  const small = { size: limb.textSize, face: TEXT_FACE };
+  const quoteStart = limb.textStart + measure(owner.name, name) + 16;
+  const linksStart = room - Math.max(...owner.links.map((link) => measure(link.label, small)));
+  const quoteRows = wrapWords(`“${owner.quote}”`, (text) => measure(text, small), linksStart - quoteStart - 14);
+  const links = owner.links.map((link) => ({ text: link.label, url: link.url, kind: "link" }));
+  return [name, tag, ...stack(quoteRows.map((text) => ({ text })), quoteStart, limb.textSize), ...stack(links, linksStart, limb.textSize)];
 }
 
 /** Draw rows of text along the path with the given id. */
@@ -62,9 +73,14 @@ export function drawRows(group, rows, lineId) {
   for (const row of rows) {
     const parent = row.url ? addShape(group, "a", { href: row.url }) : group;
     const text = addShape(parent, "text", {
+      class: row.kind ?? "plain",
       dy: (row.offset + row.size * 0.32).toFixed(1),
       style: `font: ${row.size}px ${row.face}`,
     });
-    addShape(text, "textPath", { href: `#${lineId}`, startOffset: row.start.toFixed(1) }).textContent = row.text;
+    const line = addShape(text, "textPath", { href: `#${lineId}`, startOffset: row.start.toFixed(1) });
+    line.textContent = row.text;
+    if (row.tail) {
+      addShape(addShape(line, "a", { href: row.tail.url }), "tspan", { class: "code" }).textContent = row.tail.text;
+    }
   }
 }
