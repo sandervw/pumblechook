@@ -79,6 +79,12 @@ tests/integration/     link checks
 ## 8. Risks
 
 - **Agents cannot judge the look.** Art, motion, and wording wait on their branch for the CEO's yes on the Preview.
-- **The art method is unproven.** Two mockups of one image spec, one per art method, go to the CEO; the chosen method is written here before the scene is built.
 - **Painted art is heavy.** Each composition loads only its own art; the first load stays under 2 MB.
 - **Likeness to the reference book.** No page, character, or composition is copied, traced, or given to an image model.
+
+## 9. Art method
+
+The scene is a stack of separate pieces, listed in `mockups/image-spec.md`. The CEO signed off the look in `mockups/cut-paper/`.
+
+- **Cut paper:** the arms, the eyes, and the body's paint. Code draws each outline and fills it from a painted texture sheet. An arm's text follows its outline as it bends.
+- **Painted pieces:** the background, the sea floor and its weed, the whale's rib, the fish, and the body's outline. An image model paints each piece whole on a plain flat ground, and the ground is cut away.

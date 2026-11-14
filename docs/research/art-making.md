@@ -4,9 +4,9 @@
 
 How are the painted pieces of the scene produced, so that nothing looks flat and an arm can still wriggle?
 
-## Recommendation
+## Decision
 
-Cut paper: paint texture sheets as images, and cut every shape out of them with vector outlines. It is how a collage artist works: paint a sheet of mottled green first, then take scissors to it; here the sheets are image files and the scissors are outlines the browser can bend. The paint stays real paint, and a wriggle moves the cut, not the pixels.
+Cut paper for the arms, the eyes, and the body's paint. Painted pieces for the background, the sea floor, the whale's rib, the fish, and the body's outline. See `docs/architecture.md`, section 9.
 
 ## Comparison
 

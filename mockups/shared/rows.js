@@ -58,8 +58,8 @@ export function layOutProject(project, limb, room, measure) {
 
 /** Place the owner's name, tag, quote, and links along a limb. */
 export function layOutOwner(owner, limb, room, measure) {
-  const name = { text: owner.name, start: limb.textStart, size: limb.nameSize, face: NAME_FACE, offset: -limb.textSize * 0.5, kind: "name" };
-  const tag = { text: owner.tag, start: limb.textStart + 2, size: limb.textSize, face: TEXT_FACE, offset: limb.nameSize * 0.5 + 3, kind: "tag" };
+  const name = { text: owner.name, start: limb.textStart, size: limb.nameSize, face: NAME_FACE, offset: -limb.textSize * 1.1, kind: "name" };
+  const tag = { text: owner.tag, start: limb.textStart + 2, size: limb.textSize, face: TEXT_FACE, offset: limb.nameSize * 0.5 - limb.textSize * 0.4, kind: "tag" };
   const small = { size: limb.textSize, face: TEXT_FACE };
   const quoteStart = limb.textStart + measure(owner.name, name) + 16;
   const linksStart = room - Math.max(...owner.links.map((link) => measure(link.label, small)));

@@ -10,16 +10,16 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 ## State
 
 - The scaffold is built. Astro prints one bare page from `site/`, and `core/portfolio/index.ts` holds the portfolio types. CI runs every command in `CLAUDE.md`.
-- Five `mvp` issues hold the remaining work: 2 to 6.
+- Five `mvp` issues hold the remaining work: 3 to 6, and 9.
 - The `pumblechook` Worker exists in Cloudflare, with Preview builds on.
 - The wide layout is signed off: a kraken in the upper-left corner, with each project's text running along an arm. See `mockups/wide-wireframe.png` and `mockups/image-spec.md`.
-- The CEO is tuning the look in `mockups/cut-paper/`: cut-paper arms and eyes over painted pieces, as listed in the image spec. `mockups/painted-pieces/` stays for comparison. Serve them with the `mockups` entry in `.claude/launch.json`.
+- The look of the wide scene is signed off in `mockups/cut-paper/`: cut-paper arms and eyes over painted pieces. The art method is in `docs/architecture.md`, section 9. `mockups/painted-pieces/` is the losing draft. Serve both with the `mockups` entry in `.claude/launch.json`.
 - `docs/content.md` is signed off, and the reference screenshots are in `docs/reference/`.
 - Image generation spend is approved up to $10, for the mockup issue only.
 
 ## Next
 
-1. Issues 2 and 3 in one batch on the `mockups-and-words` branch. Issue 2 needs the CEO's sign-off of the look, then the art method written into `docs/architecture.md`. The CEO also wants fonts found that suit the Lane Smith style. Issue 3 is the words and links.
+1. Issue 3, the words and links, and issue 9, the fonts.
 2. Issues 4 and 5, the wide and tall scenes. Each waits on its branch for the CEO's eye.
 3. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
 
