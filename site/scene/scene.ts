@@ -30,7 +30,7 @@ export function runScene(scene: Element, pieces: MovingPieces): void {
     if (!stillness.matches) {
       drift(arms, elapsed);
       slideSwarm(swarm, pieces.water, elapsed, Math.random);
-      blink(gaze, time, Math.random);
+      blink(gaze, time, elapsed, Math.random);
     }
     requestAnimationFrame(animate);
   }

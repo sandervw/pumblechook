@@ -6,6 +6,7 @@ import fishOne from "../art/fish-1.webp";
 import fishTwo from "../art/fish-2.webp";
 import fishThree from "../art/fish-3.webp";
 import floor from "../art/floor.webp";
+import grain from "../art/grain.webp";
 import rib from "../art/rib.webp";
 import rustDark from "../art/rust-dark.jpg";
 import rust from "../art/rust.jpg";
@@ -13,11 +14,12 @@ import weedOne from "../art/weed-1.webp";
 import weedTwo from "../art/weed-2.webp";
 import yellow from "../art/yellow.jpg";
 import { LID_REST, lidPath } from "../scene/eyes.ts";
-import { centreLine, firstWriggle, limbLength, linePath, outlinePath, STILL } from "../scene/limb.ts";
+import { centreLine, firstWriggle, limbLength, linePath, outlinePath, reachBox, STILL } from "../scene/limb.ts";
 import "../scene/scene.css";
 import { fishPlace, startSide } from "../scene/swarm.ts";
 import { loadMeasure } from "./measure.ts";
 import Rows from "./Rows.astro";
+import Tattoos from "./Tattoos.astro";
 import { layOutOwner, layOutProject } from "./rows.ts";
 import { WIDE } from "./wide-layout.ts";
 
@@ -41,6 +43,7 @@ const arms = WIDE.arms.map((limb, armIndex) => {
   const room = limbLength(centreLine(limb.curve, STILL)) * TEXT_REACH;
   return {
     armIndex,
+    box: reachBox(limb),
     outline: outlinePath(limb, points),
     line: linePath(points),
     blocks: layOutProject(projects[armIndex], limb, room, measure),
@@ -49,7 +52,7 @@ const arms = WIDE.arms.map((limb, armIndex) => {
 // Later arms lie under earlier ones.
 const papers = arms.toReversed();
 const ribLine = linePath(centreLine(WIDE.rib.curve, STILL));
-const ownerBlocks = layOutOwner(ownerMark, WIDE.rib, WIDE.rib.textEnd, measure);
+const ownerBlocks = layOutOwner(ownerMark, WIDE.rib, measure);
 const lids = WIDE.eyes.map((eye) => lidPath(eye, LID_REST));
 const swarm = WIDE.water.starts.map((place, fishIndex) => ({
   kindIndex: fishIndex % FISH_KINDS.length,
@@ -70,12 +73,24 @@ const swarm = WIDE.water.starts.map((place, fishIndex) => ({
     <pattern id="yellow" patternUnits="userSpaceOnUse" width="240" height="240">
       <image href={yellow.src} width="240" height="240"></image>
     </pattern>
-    <!-- Wobbles an edge like scissors, then drops a paper shadow. -->
-    <filter id="cut" x="-10%" y="-10%" width="120%" height="130%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4" result="wobble"></feTurbulence>
-      <feDisplacementMap in="SourceGraphic" in2="wobble" scale="6" xChannelSelector="R" yChannelSelector="G" result="cut"></feDisplacementMap>
-      <feDropShadow in="cut" dx="2" dy="4" stdDeviation="3.5" flood-color="#000" flood-opacity="0.6"></feDropShadow>
+    <!-- Softens a cut edge, then drops a paper shadow. -->
+    {
+      arms.map((arm) => (
+        <filter id={`cut-${arm.armIndex}`} filterUnits="userSpaceOnUse" {...arm.box}>
+          <feGaussianBlur stdDeviation="0.45" result="cut" />
+          <feDropShadow in="cut" dx="2" dy="4" stdDeviation="3.5" flood-color="#000" flood-opacity="0.6" />
+        </filter>
+      ))
+    }
+    <!-- Tattoo ink, bled a little into the skin. -->
+    <filter id="faded" x="-10%" y="-20%" width="120%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="1" seed="9" result="skin"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="skin" scale="1.4" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+      <feGaussianBlur stdDeviation="0.35"></feGaussianBlur>
     </filter>
+    <pattern id="grain" patternUnits="userSpaceOnUse" width="320" height="320">
+      <image href={grain.src} width="320" height="320"></image>
+    </pattern>
     <filter id="bone" x="-20%" y="-20%" width="140%" height="150%">
       <feComponentTransfer result="pale">
         <feFuncR type="linear" slope="1.18"></feFuncR>
@@ -141,8 +156,8 @@ const swarm = WIDE.water.starts.map((place, fishIndex) => ({
     <image href={rib.src} {...WIDE.rib.art} filter="url(#bone)"></image>
     <g transform="translate(-10 384) scale(0.638)" filter="url(#shadow)">
       <image href={floor.src} width="1536" height="307"></image>
-      <image class="weed" href={weedOne.src} width="156" height="158"></image>
-      <image class="weed" href={weedTwo.src} x="1322" width="178" height="166"></image>
+      <image class="weed" href={weedOne.src} width="139" height="158"></image>
+      <image class="weed" href={weedTwo.src} x="1342" width="158" height="166"></image>
     </g>
   </g>
 
@@ -154,7 +169,7 @@ const swarm = WIDE.water.starts.map((place, fishIndex) => ({
   <g aria-hidden="true">
     {
       papers.map((arm) => (
-        <g class="paper" data-arm={arm.armIndex} filter="url(#cut)">
+        <g class="paper" data-arm={arm.armIndex} filter={`url(#cut-${arm.armIndex})`}>
           <path d={arm.outline} fill="url(#rust-dark)" />
           <path d={arm.outline} fill="url(#glow)" />
         </g>
@@ -180,9 +195,12 @@ const swarm = WIDE.water.starts.map((place, fishIndex) => ({
         <rect x="-20" y="-20" width="440" height="420" fill="url(#glow)"></rect>
       </g>
     </g>
+  </g>
+
+  <g aria-hidden="true">
     {
       WIDE.eyes.map((eye, eyeIndex) => (
-        <>
+        <g class="eye">
           <circle cx={eye.centre[0]} cy={eye.centre[1]} r={eye.radius} fill="url(#yellow)" filter="url(#shadow)" />
           <circle cx={eye.centre[0]} cy={eye.centre[1]} r={eye.radius} fill="url(#eye-glow)" />
           <circle cx={eye.pupil[0]} cy={eye.pupil[1]} r={eye.pupilRadius} fill="#17110b" />
@@ -190,10 +208,18 @@ const swarm = WIDE.water.starts.map((place, fishIndex) => ({
             <path d={lids[eyeIndex]} fill="url(#rust-dark)" />
             <path d={lids[eyeIndex]} fill="url(#glow)" />
           </g>
-        </>
+        </g>
       ))
     }
+  </g>
+
+  <Tattoos profileLink={ownerMark.profileLink} places={WIDE.tattoos} />
+
+  <!-- One sheet of paper grain over everything, words too, flattens the collage. -->
+  <g aria-hidden="true" pointer-events="none">
     <rect width="960" height="540" fill="url(#vignette)"></rect>
+    <rect class="grain" width="960" height="540" fill="url(#grain)"></rect>
+    <rect class="parchment" width="960" height="540"></rect>
   </g>
 </svg>
 

@@ -1,6 +1,8 @@
 // A limb is an arm or the rib: a tapered band.
 
-const STEPS = 32;
+const STEPS = 64;
+// Scissors leave each edge a little uneven, in scene units.
+const SNIP_REACH = 1.8;
 const WAVE_REACH = 16;
 const PHASE_GAP = 1.3;
 
@@ -68,6 +70,30 @@ export function centreLine(curve: Curve, wriggle: Wriggle): Point[] {
   });
 }
 
+/** A rectangle of the scene: left, top, width, height. */
+export interface Box {
+  readonly x: number;
+  readonly y: number;
+  readonly width: number;
+  readonly height: number;
+}
+
+/** Return a fixed box holding a limb and its shadow. */
+export function reachBox(limb: Limb): Box {
+  const margin = limb.rootWidth / 2 + limb.tuck + WAVE_REACH + 12;
+  const points = centreLine(limb.curve, STILL);
+  const acrosses = points.map((point) => point[0]);
+  const downs = points.map((point) => point[1]);
+  const left = Math.floor(Math.min(...acrosses) - margin);
+  const top = Math.floor(Math.min(...downs) - margin);
+  return {
+    x: left,
+    y: top,
+    width: Math.ceil(Math.max(...acrosses) + margin) - left,
+    height: Math.ceil(Math.max(...downs) + margin) - top,
+  };
+}
+
 /** Return the length of a centre line. */
 export function limbLength(points: readonly Point[]): number {
   return points
@@ -83,10 +109,12 @@ export function linePath(points: readonly Point[]): string {
 /** Return the path around a limb, with a round tip. */
 export function outlinePath(limb: Limb, points: readonly Point[]): string {
   const last = points.length - 1;
-  const lump = (step: number) => 1 + 0.05 * Math.sin(step * 0.6 + limb.rootWidth);
+  const lump = (step: number) => 1 + 0.05 * Math.sin(step * 0.3 + limb.rootWidth);
   const halfWidth = (step: number) => ((limb.rootWidth + ((limb.tipWidth - limb.rootWidth) * step) / last) / 2) * lump(step);
-  const upper = points.map((point, step) => shift(point, headingAt(points, step), -halfWidth(step)));
-  const lower = points.map((point, step) => shift(point, headingAt(points, step), halfWidth(step)));
+  const snip = (step: number, side: number) =>
+    SNIP_REACH * (0.6 * Math.sin(step * 0.9 + side * 2.1 + limb.rootWidth) + 0.4 * Math.sin(step * 2.3 + side * 5.7));
+  const upper = points.map((point, step) => shift(point, headingAt(points, step), -halfWidth(step) - snip(step, 0)));
+  const lower = points.map((point, step) => shift(point, headingAt(points, step), halfWidth(step) + snip(step, 1)));
   const rootHeading = headingAt(points, 0);
   const tucked = (point: Point): Point => [
     point[0] - Math.cos(rootHeading) * limb.tuck,

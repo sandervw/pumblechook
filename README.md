@@ -6,7 +6,7 @@ A one-page portfolio painted like a picture-book collage: a deep-sea diver's dre
 
 ## What it shows
 
-Five projects, each with a logline and a link to its live site, plus a link to its repository when that is public. The owner's name, bio, and profile link sit inside the picture.
+Five projects, each with a logline and a link to its live site, plus a link to its repository when that is public. The owner's name and profile link sit inside the picture.
 
 ## How it is built
 

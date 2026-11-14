@@ -5,7 +5,6 @@ export const PORTFOLIO_CONTENT: Portfolio = {
   ownerMark: {
     name: "Sander VanWilligen",
     tag: "Developer Portfolio",
-    bio: "The squeaky wheel gets the cheese.",
     profileLink: "https://github.com/sandervw",
   },
   projects: [

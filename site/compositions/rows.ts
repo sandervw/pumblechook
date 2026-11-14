@@ -4,12 +4,10 @@ import type { OwnerMark, Project } from "../../core/portfolio/index.ts";
 import type { Measure } from "./measure.ts";
 
 const CODE_WORD = "(code)";
-const PROFILE_WORD = "GitHub";
 const ROW_GAP = 2;
 // A row's baseline sits this share of its size below centre.
 const BASELINE_DROP = 0.32;
 const GAP_AFTER_NAME = 14;
-const GAP_AFTER_OWNER = 16;
 
 /** A limb's text sizes, and where its text starts. */
 export interface Lettering {
@@ -27,7 +25,7 @@ export interface Row {
 
 /** Rows of one kind of text, read as one piece. */
 export interface Block {
-  readonly kind: "name" | "tag" | "plain" | "link" | "code";
+  readonly kind: "name" | "tag" | "plain" | "code";
   readonly size: number;
   readonly rows: readonly Row[];
   readonly url?: string;
@@ -87,19 +85,12 @@ export function layOutProject(project: Project, lettering: Lettering, room: numb
   return [name, { kind: "plain", size: textSize, rows }, code];
 }
 
-/** Place the owner's name, tag, bio, and profile link. */
-export function layOutOwner(ownerMark: OwnerMark, lettering: Lettering, room: number, measure: Measure): Block[] {
+/** Place the owner's name with the tag beside it, on one line. */
+export function layOutOwner(ownerMark: OwnerMark, lettering: Lettering, measure: Measure): Block[] {
   const { nameSize, textSize, textStart } = lettering;
-  const widthOf = (text: string) => measure(text, "sentence", textSize);
-  const bioStart = textStart + measure(ownerMark.name, "name", nameSize) + GAP_AFTER_OWNER;
-  const linkStart = room - widthOf(PROFILE_WORD);
-  const bioTexts = wrapWords(`“${ownerMark.bio}”`, widthOf, linkStart - bioStart - GAP_AFTER_NAME);
-  const nameDrop = nameSize * BASELINE_DROP - textSize * 1.1;
-  const tagDrop = nameSize * 0.5 - textSize * 0.4 + textSize * BASELINE_DROP;
+  const tagStart = textStart + measure(ownerMark.name, "name", nameSize) + GAP_AFTER_NAME;
   return [
-    { kind: "name", size: nameSize, rows: [{ text: ownerMark.name, start: textStart, drop: nameDrop }] },
-    { kind: "tag", size: textSize, rows: [{ text: ownerMark.tag, start: textStart + 2, drop: tagDrop }] },
-    { kind: "plain", size: textSize, rows: stack(bioTexts, bioStart, textSize) },
-    { kind: "link", size: textSize, url: ownerMark.profileLink, rows: stack([PROFILE_WORD], linkStart, textSize) },
+    { kind: "name", size: nameSize, rows: [{ text: ownerMark.name, start: textStart, drop: nameSize * BASELINE_DROP }] },
+    { kind: "tag", size: textSize, rows: [{ text: ownerMark.tag, start: tagStart, drop: nameSize * BASELINE_DROP }] },
   ];
 }

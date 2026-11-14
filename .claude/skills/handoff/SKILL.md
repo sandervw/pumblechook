@@ -11,12 +11,12 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 
 - The page is the wide scene, `site/compositions/Wide.astro`. The build prints every piece, name, logline, and link into static HTML; the scripts in `site/scene/` only move them. CI runs every command in `CLAUDE.md`.
 - The CEO signed off the wide scene's look and motion, with every logline always visible. Two `mvp` issues remain: 5 and 6.
-- The fonts are Grenze Gotisch SemiBold for names and IM Fell DW Pica for sentences, hosted in `public/fonts/`.
+- The fonts are Grenze Gotisch SemiBold for names, IM Fell DW Pica for sentences, and Yellowtail for tattoos, hosted in `public/fonts/`.
 - The `pumblechook` Worker exists in Cloudflare, with Preview builds on.
 - The wide layout is signed off: a kraken in the upper-left corner, with each project's text running along an arm. See `mockups/wide-wireframe.png` and `mockups/image-spec.md`.
 - The look of the wide scene is signed off in `mockups/cut-paper/`: cut-paper arms and eyes over painted pieces. The art method is in `docs/architecture.md`, section 9. `mockups/painted-pieces/` is the losing draft. The `mockups` entry in `.claude/launch.json` serves the repository; open `/mockups/cut-paper/`. The `site` entry runs `astro dev` on port 4321.
 - `docs/content.md` is signed off, and the reference screenshots are in `docs/reference/`.
-- Image generation spend is approved up to $10, for the mockup issue only.
+- Image generation spend is approved up to $10 for the look-adjustments batch (body, weed, bone).
 
 ## Next
 

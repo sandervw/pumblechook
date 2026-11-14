@@ -1,4 +1,4 @@
-/* The site's two fonts, each under the SIL Open Font License. */
+/* The site's fonts: two under the SIL Open Font License, Yellowtail under the Apache License. */
 @font-face {
   font-family: "Grenze Gotisch";
   font-display: block;
@@ -17,4 +17,10 @@
   font-style: italic;
   font-display: block;
   src: url("im-fell-dw-pica-latin-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Yellowtail";
+  font-display: block;
+  src: url("yellowtail-latin-400-normal.woff2") format("woff2");
 }
