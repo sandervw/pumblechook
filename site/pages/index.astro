@@ -1,7 +1,13 @@
 ---
-import type { Project } from "../../core/portfolio/index.ts";
+import { parsePortfolio } from "../../core/portfolio/index.ts";
+import { PORTFOLIO_CONTENT } from "../content/portfolio.ts";
 
-const projects: readonly Project[] = [];
+const parsed = parsePortfolio(PORTFOLIO_CONTENT);
+if (Array.isArray(parsed)) {
+  const complaints = parsed.map((broken) => `${broken.rule}: "${broken.badValue}"`);
+  throw new Error(`The content breaks the portfolio rules.\n${complaints.join("\n")}`);
+}
+const { ownerMark, projects } = parsed;
 ---
 
 <!doctype html>
@@ -13,10 +19,32 @@ const projects: readonly Project[] = [];
   </head>
   <body>
     <main>
-      <h1>Pumblechook</h1>
+      <h1>{ownerMark.name}</h1>
+      <p>{ownerMark.tag}</p>
+      <p>“{ownerMark.bio}”</p>
       <ul>
-        {projects.map((project) => <li>{project.name}</li>)}
+        <li><a href={ownerMark.gitHubLink}>GitHub</a></li>
+        <li><a href={ownerMark.linkedInLink}>LinkedIn</a></li>
       </ul>
+      <ol>
+        {
+          projects.map((project) => (
+            <li>
+              <h2>
+                <a href={project.liveSiteLink}>{project.name}</a>
+              </h2>
+              <p>
+                {project.logline}
+                {project.repositoryLink && (
+                  <a href={project.repositoryLink} aria-label={`${project.name} (code)`}>
+                    <i>(code)</i>
+                  </a>
+                )}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
     </main>
   </body>
 </html>

@@ -66,6 +66,7 @@ site/                  Astro source folder
 public/                _headers, fonts, icons
 mockups/               art-method drafts, never deployed
 tests/blackbox/        Playwright specs
+tests/unit/            portfolio rule checks
 tests/integration/     link checks
 ```
 
