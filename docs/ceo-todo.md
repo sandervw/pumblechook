@@ -6,8 +6,3 @@ Things only the CEO can do: accounts, logins, keys, payments, approvals. Check i
 
 - [ ] Say yes or no to image generation spend for the full scene. The mockups have $10.
 - [ ] Review each scene branch on its Preview link.
-
-## At launch
-
-- [ ] Say yes to pointing pumblechook.com at the site and redirecting pumblechook.dev.
-- [ ] Say yes to making the repository public.

@@ -1,0 +1,10 @@
+Copyright (c) 2026 Sander VanWilligen. All rights reserved.
+
+The art, textures, and wording in this repository are not licensed for any use. They are:
+
+- every image in site/art/, and public/favicon.ico;
+- the portfolio's words: site/content/portfolio.ts and docs/content.md.
+
+The fonts in public/fonts/ carry their own licences beside them.
+
+The code is licensed under the MIT License in LICENSE-CODE.

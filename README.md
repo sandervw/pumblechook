@@ -38,3 +38,7 @@ npm run dev
 - [Glossary](docs/glossary.md)
 - [Content sheet](docs/content.md)
 - [Use cases](docs/use-cases/README.md)
+
+## Licence
+
+The code is under the [MIT License](LICENSE-CODE). The art, textures, and wording are all rights reserved; see [LICENSE](LICENSE).

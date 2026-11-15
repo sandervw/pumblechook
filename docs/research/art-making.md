@@ -47,4 +47,4 @@ Cut paper for the arms, the eyes, and the body's paint. Painted pieces for the b
 
 ## Style and rights
 
-Lane Smith's picture-book painting is the defining style. Every agent brief and spec names him, alongside his traits (mottled paint, dark vignettes, cut-paper edges, off-kilter type). Image prompts use the wording in `mockups/image-spec.md`. No page, character, or composition from his books is copied, traced, or used as an image-model input.
+Lane Smith's picture-book painting is the defining style. Every agent brief and spec names him, alongside his traits (mottled paint, dark vignettes, cut-paper edges, off-kilter type). Image prompts use the wording in `docs/image-spec.md`. No page, character, or composition from his books is copied, traced, or used as an image-model input.

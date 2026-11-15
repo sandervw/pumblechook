@@ -2,15 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "mockups",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "4173", "--bind", "127.0.0.1"],
-      "port": 4173
-    },
-    {
       "name": "site",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 4321
     }
   ]

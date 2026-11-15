@@ -87,6 +87,11 @@ body {
   paint-order: stroke;
 }
 
+/* On a phone, a finger can take a link's whole box. */
+#tall a text {
+  pointer-events: bounding-box;
+}
+
 /* Tattoos: faded blue-black ink, apart from the lettering. */
 .tattoos > g,
 .tattoos a {
