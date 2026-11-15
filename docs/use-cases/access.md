@@ -6,4 +6,4 @@
 
 **UC-14 Visit with scripts off.** Steps: turn scripts off in the browser; open the site; follow a live site link. Expected: the scene appears; every name, logline, and link can be read; the link opens.
 
-**UC-15 Visit on a phone.** Steps: open the site on a phone screen; tap an arm; tap its live site link. Expected: the picture is arranged for the tall screen and does not scroll sideways; nothing needs a pinch to read or tap; the tapped arm's name and logline can be read; the link opens.
+**UC-15 Visit on a phone.** Steps: open the site on a phone screen; tap a live site link. Expected: the picture is arranged for the tall screen and does not scroll sideways; every name, the tag, and every link can be read and tapped without a pinch; the link opens.

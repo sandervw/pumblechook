@@ -10,7 +10,7 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 ## State
 
 - The page prints both compositions, `site/compositions/Wide.astro` and `Tall.astro`; CSS shows the tall one on screens narrower than 9:10, and only the shown one moves. The build prints every piece, name, logline, and link into static HTML; the scripts in `site/scene/` only move them. CI runs every command in `CLAUDE.md`.
-- The CEO signed off the wide scene's look and motion, with every logline always visible. Two `mvp` issues remain: 5 and 6.
+- The CEO signed off the wide scene's look and motion, with every logline always visible, and the tall scene, which shows no loglines. One `mvp` issue remains: 6.
 - The fonts are Grenze Gotisch SemiBold for names, IM Fell DW Pica for sentences, and Yellowtail for tattoos, hosted in `public/fonts/`.
 - The `pumblechook` Worker exists in Cloudflare, with Preview builds on.
 - The wide layout is signed off: a kraken in the upper-left corner, with each project's text running along an arm. See `mockups/wide-wireframe.png` and `mockups/image-spec.md`.
@@ -20,8 +20,7 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 
 ## Next
 
-1. Issue 5, the tall scene, is built on `tall-scene` and waits for the CEO's eye on its Preview. Open: whether phones show loglines, and whether phones may fetch the floor and one weed they don't draw.
-2. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
+1. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
 
 ## Parked
 
