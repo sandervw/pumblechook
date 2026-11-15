@@ -9,8 +9,8 @@ test("UC-06 owner's name, tag, and profile link", async ({
   await stubOutsideSites(page, baseURL ?? "http://localhost:8787");
   await page.goto("/");
 
-  const name = page.getByText(ownerMark.name, { exact: true });
-  const tag = page.getByText(ownerMark.tag, { exact: true });
+  const name = page.getByText(ownerMark.name, { exact: true }).filter({ visible: true });
+  const tag = page.getByText(ownerMark.tag, { exact: true }).filter({ visible: true });
   await expect(name).toBeVisible();
   await expect(tag).toBeVisible();
   // The tag follows the name on the same line.

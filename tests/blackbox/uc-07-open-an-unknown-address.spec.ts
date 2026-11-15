@@ -12,7 +12,7 @@ for (const extraPath of ["/squid", "/deep/sea/anything"]) {
     await page.goto(extraPath);
     await expect(page).toHaveTitle(rootTitle);
     expect(await page.locator("body").innerText()).toBe(rootWords);
-    await expect(page.getByText(ownerMark.name, { exact: true })).toBeVisible();
+    await expect(page.getByText(ownerMark.name, { exact: true }).filter({ visible: true })).toBeVisible();
     for (const project of projects) {
       const nameLink = page.getByRole("link", {
         name: project.name,

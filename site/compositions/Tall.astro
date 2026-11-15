@@ -1,0 +1,144 @@
+---
+import type { Portfolio } from "../../core/portfolio/index.ts";
+import background from "../art/background.jpg";
+import body from "../art/body.webp";
+import rib from "../art/rib.webp";
+import weed from "../art/weed-2.webp";
+import { LID_REST, lidPath } from "../scene/eyes.ts";
+import { centreLine, firstWriggle, linePath, outlinePath, reachBox, STILL } from "../scene/limb.ts";
+import "../scene/scene.css";
+import { loadMeasure } from "./measure.ts";
+import Paints from "./Paints.astro";
+import Rows from "./Rows.astro";
+import Swarm from "./Swarm.astro";
+import Tattoos from "./Tattoos.astro";
+import { layOutTitle, stackOwner } from "./rows.ts";
+import { TALL } from "./tall-layout.ts";
+
+interface Props {
+  portfolio: Portfolio;
+}
+
+const PREFIX = "tall";
+// Phone fish are drawn larger than their art.
+const FISH_SIZE = 1.3;
+const paint = (name: string) => `url(#${PREFIX}-${name})`;
+const [width, height] = TALL.frame;
+
+const { ownerMark, projects } = Astro.props.portfolio;
+const measure = loadMeasure();
+const arms = TALL.arms.map((limb, armIndex) => {
+  const points = centreLine(limb.curve, firstWriggle(armIndex));
+  return {
+    armIndex,
+    box: reachBox(limb),
+    outline: outlinePath(limb, points),
+    line: linePath(points),
+    blocks: layOutTitle(projects[armIndex], limb, measure),
+  };
+});
+// Later arms lie under earlier ones.
+const papers = arms.toReversed();
+const ribLine = linePath(centreLine(TALL.rib.curve, STILL));
+const ownerBlocks = stackOwner(ownerMark, TALL.rib, measure);
+const lids = TALL.eyes.map((eye) => lidPath(eye, LID_REST));
+---
+
+<svg id="tall" class="scene" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet" role="presentation">
+  <Paints prefix={PREFIX} frame={TALL.frame} glow={TALL.glow}>
+    <!-- Softens a cut edge, then drops a paper shadow. -->
+    {
+      arms.map((arm) => (
+        <filter id={`${PREFIX}-cut-${arm.armIndex}`} filterUnits="userSpaceOnUse" x={arm.box.left} y={arm.box.top} width={arm.box.width} height={arm.box.height}>
+          <feGaussianBlur stdDeviation="0.45" result="cut" />
+          <feDropShadow in="cut" dx="2" dy="4" stdDeviation="3.5" flood-color="#000" flood-opacity="0.6" />
+        </filter>
+      ))
+    }
+    <mask id={`${PREFIX}-body-shape`} style="mask-type: alpha">
+      <image href={body.src} preserveAspectRatio="none" {...TALL.body}></image>
+    </mask>
+  </Paints>
+
+  <g aria-hidden="true">
+    <image href={background.src} width={width} height={height} preserveAspectRatio="xMidYMid slice"></image>
+    <image class="light" href={background.src} width={width} height={height} preserveAspectRatio="xMidYMid slice"></image>
+    <Swarm prefix={PREFIX} water={TALL.water} size={FISH_SIZE} />
+    <image href={rib.src} {...TALL.rib.art} transform={TALL.rib.place} filter={paint("bone")}></image>
+    <g filter={paint("shadow")}>
+      <image class="weed" href={weed.src} {...TALL.weed}></image>
+    </g>
+  </g>
+
+  <g class="words owner" transform={TALL.rib.place}>
+    <path id={`${PREFIX}-rib-line`} d={ribLine} fill="none"></path>
+    <Rows blocks={ownerBlocks} lineId={`${PREFIX}-rib-line`} />
+  </g>
+
+  <g aria-hidden="true">
+    {
+      papers.map((arm) => (
+        <g class="paper" data-arm={arm.armIndex} filter={paint(`cut-${arm.armIndex}`)}>
+          <path d={arm.outline} fill={paint("rust-dark")} />
+          <path d={arm.outline} fill={paint("glow")} />
+        </g>
+      ))
+    }
+  </g>
+
+  <g class="words" role="list">
+    {
+      arms.map((arm) => (
+        <g role="listitem" data-arm={arm.armIndex}>
+          <path id={`${PREFIX}-arm-${arm.armIndex}-line`} d={arm.line} fill="none" />
+          <Rows blocks={arm.blocks} lineId={`${PREFIX}-arm-${arm.armIndex}-line`} />
+        </g>
+      ))
+    }
+  </g>
+
+  <g aria-hidden="true" pointer-events="none">
+    <g filter={paint("shadow")}>
+      <g mask={paint("body-shape")}>
+        <rect x="-20" y="-20" width={width + 40} height="260" fill={paint("rust")}></rect>
+        <rect x="-20" y="-20" width={width + 40} height="260" fill={paint("glow")}></rect>
+      </g>
+    </g>
+  </g>
+
+  <g aria-hidden="true">
+    {
+      TALL.eyes.map((eye, eyeIndex) => (
+        <g class="eye">
+          <circle cx={eye.centre[0]} cy={eye.centre[1]} r={eye.radius} fill={paint("yellow")} filter={paint("shadow")} />
+          <circle cx={eye.centre[0]} cy={eye.centre[1]} r={eye.radius} fill={paint("eye-glow")} />
+          <circle cx={eye.pupil[0]} cy={eye.pupil[1]} r={eye.pupilRadius} fill="#17110b" />
+          <g class="lid" filter={paint("shadow")}>
+            <path d={lids[eyeIndex]} fill={paint("rust-dark")} />
+            <path d={lids[eyeIndex]} fill={paint("glow")} />
+          </g>
+        </g>
+      ))
+    }
+  </g>
+
+  <Tattoos prefix={PREFIX} profileLink={ownerMark.profileLink} places={TALL.tattoos} />
+
+  <!-- One sheet of paper grain over everything, words too, flattens the collage. -->
+  <g aria-hidden="true" pointer-events="none">
+    <rect width={width} height={height} fill={paint("vignette")}></rect>
+    <rect class="grain" width={width} height={height} fill={paint("grain")}></rect>
+    <rect class="parchment" width={width} height={height}></rect>
+  </g>
+</svg>
+
+<script>
+  import { runScene } from "../scene/scene.ts";
+  import { TALL } from "./tall-layout.ts";
+
+  const scene = document.querySelector("#tall");
+  if (!scene) {
+    throw new Error("The page lacks its #tall picture.");
+  }
+  runScene(scene, TALL);
+</script>

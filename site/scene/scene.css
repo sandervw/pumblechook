@@ -12,10 +12,27 @@ body {
   place-items: center;
 }
 
-#scene {
+#wide {
   display: block;
   width: min(100vw, 100vh * 16 / 9);
   aspect-ratio: 16 / 9;
+}
+
+/* Phones and other tall screens get the tall composition. */
+#tall {
+  display: none;
+  width: min(100vw, 100svh * 390 / 844);
+  aspect-ratio: 390 / 844;
+}
+
+@media (max-aspect-ratio: 9 / 10) {
+  #wide {
+    display: none;
+  }
+
+  #tall {
+    display: block;
+  }
 }
 
 .words text {

@@ -60,9 +60,9 @@ export async function reachArm(page: Page, link: Locator) {
   }).toPass({ timeout: 5000 });
 }
 
-/** Finds the one picture and the area it fills. */
+/** Finds the one picture shown and the area it fills. */
 export async function pictureArea(page: Page): Promise<Area> {
-  const picture = page.locator("svg");
+  const picture = page.locator("svg:visible");
   await expect(picture).toHaveCount(1);
   const box = await picture.boundingBox();
   if (!box) throw new Error("the picture has no box");

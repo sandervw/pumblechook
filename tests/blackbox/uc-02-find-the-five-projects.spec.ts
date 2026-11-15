@@ -12,7 +12,7 @@ test("UC-02 five arms each carry one project from the sheet", async ({
     await nameLink.focus();
     await expect(nameLink).toBeFocused();
     await expect(nameLink).toBeVisible();
-    await expect(page.getByText(project.name, { exact: true })).toHaveCount(1);
+    await expect(page.getByText(project.name, { exact: true }).filter({ visible: true })).toHaveCount(1);
   }
 
   const names = new Set(projects.map((project) => project.name));

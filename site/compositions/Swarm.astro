@@ -1,0 +1,42 @@
+---
+// The fish, each at its start, with a lid over its eye.
+import { fishPlace, startSide, type Water } from "../scene/swarm.ts";
+import { FISH_KINDS } from "./fish.ts";
+
+interface Props {
+  prefix: string;
+  water: Water;
+  /** How much larger than its art each fish is drawn. */
+  size: number;
+}
+
+const { prefix, water, size } = Astro.props;
+const swarm = water.starts.map((place, fishIndex) => ({
+  kindIndex: fishIndex % FISH_KINDS.length,
+  kind: FISH_KINDS[fishIndex % FISH_KINDS.length],
+  transform: fishPlace(place, startSide(fishIndex)),
+  blinkDelay: `animation-delay: ${(-fishIndex * 2.3).toFixed(1)}s`,
+}));
+---
+
+<g filter={`url(#${prefix}-shadow)`}>
+  {
+    swarm.map((fish) => (
+      <g class="fish" transform={fish.transform}>
+        <g transform={`scale(${size})`}>
+          <image href={fish.kind.art.src} x={fish.kind.left} y={fish.kind.top} width={fish.kind.width} height={fish.kind.height} />
+          <image
+            class="fish-lid"
+            href={fish.kind.art.src}
+            x={fish.kind.left - fish.kind.lidShift}
+            y={fish.kind.top}
+            width={fish.kind.width}
+            height={fish.kind.height}
+            clip-path={`url(#${prefix}-fish-eye-${fish.kindIndex})`}
+            style={fish.blinkDelay}
+          />
+        </g>
+      </g>
+    ))
+  }
+</g>

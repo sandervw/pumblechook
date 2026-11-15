@@ -26,7 +26,7 @@ export function findArms(scene: Element, limbs: readonly Limb[]): Arm[] {
   return limbs.map((limb, armIndex) => ({
     limb,
     papers: findPieces<SVGPathElement>(scene, `.paper[data-arm="${armIndex}"] path`, 2),
-    line: findPieces<SVGPathElement>(scene, `#arm-${armIndex}-line`, 1)[0],
+    line: findPieces<SVGPathElement>(scene, `.words [data-arm="${armIndex}"] > path`, 1)[0],
     parts: findPieces(scene, `[data-arm="${armIndex}"]`, 2),
     pace: BASE_PACE + armIndex * PACE_STEP,
     phase: firstWriggle(armIndex).phase,
