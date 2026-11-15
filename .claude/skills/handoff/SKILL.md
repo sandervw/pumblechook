@@ -9,7 +9,7 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 
 ## State
 
-- The page is the wide scene, `site/compositions/Wide.astro`. The build prints every piece, name, logline, and link into static HTML; the scripts in `site/scene/` only move them. CI runs every command in `CLAUDE.md`.
+- The page prints both compositions, `site/compositions/Wide.astro` and `Tall.astro`; CSS shows the tall one on screens narrower than 9:10, and only the shown one moves. The build prints every piece, name, logline, and link into static HTML; the scripts in `site/scene/` only move them. CI runs every command in `CLAUDE.md`.
 - The CEO signed off the wide scene's look and motion, with every logline always visible. Two `mvp` issues remain: 5 and 6.
 - The fonts are Grenze Gotisch SemiBold for names, IM Fell DW Pica for sentences, and Yellowtail for tattoos, hosted in `public/fonts/`.
 - The `pumblechook` Worker exists in Cloudflare, with Preview builds on.
@@ -20,7 +20,7 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 
 ## Next
 
-1. Issue 5, the tall scene. It waits on its branch for the CEO's eye.
+1. Issue 5, the tall scene, is built on `tall-scene` and waits for the CEO's eye on its Preview. Open: whether phones show loglines, and whether phones may fetch the floor and one weed they don't draw.
 2. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
 
 ## Parked
@@ -43,4 +43,6 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 - `docs/reference/` is gitignored; never commit or copy the book's pages.
 - The `image` skill's model rejects every prompt that names Lane Smith; use the prompt wording in `mockups/image-spec.md`.
 - The image model takes our own images as `input_references`. It ignores `background: transparent`: paint each piece on a plain flat white ground and cut it out. It refuses about seven or more requests at once.
+- Chrome paints nothing from defs inside a hidden SVG. Each composition keeps its own defs, and every id starts with the composition's name.
+- `getByText` also finds the hidden composition's words; add `.filter({ visible: true })`.
 - A Preview answers a plain request for an unknown path with 404; a browser's navigation gets the page.

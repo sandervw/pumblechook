@@ -32,15 +32,7 @@ const EYES: readonly Eye[] = [
 ];
 
 /** Where each tattoo sits on the skin, as a transform. */
-export interface TattooPlaces {
-  readonly tears: string;
-  readonly ouroboros: string;
-  readonly cross: string;
-  readonly lovers: string;
-  readonly profile: string;
-}
-
-const TATTOOS: TattooPlaces = {
+const TATTOOS = {
   tears: "translate(229 206) rotate(12) scale(1.15)",
   ouroboros: "translate(250 44) rotate(-10) scale(1.15)",
   cross: "translate(21 118) scale(1.4)",

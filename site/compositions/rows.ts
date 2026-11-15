@@ -85,6 +85,39 @@ export function layOutProject(project: Project, lettering: Lettering, room: numb
   return [name, { kind: "plain", size: textSize, rows }, code];
 }
 
+/** Return a name's row and a smaller row centred beneath it. */
+function nameOver(name: string, under: string, lettering: Lettering, measure: Measure): [Row, Row] {
+  const { nameSize, textSize, textStart } = lettering;
+  const shift = (measure(name, "name", nameSize) - measure(under, "sentence", textSize)) / 2;
+  return [
+    { text: name, start: textStart, drop: -(textSize + ROW_GAP) / 2 + nameSize * BASELINE_DROP },
+    { text: under, start: textStart + shift, drop: (nameSize + ROW_GAP) / 2 + textSize * BASELINE_DROP },
+  ];
+}
+
+/** Place a project's linked name, with its code link beneath. */
+export function layOutTitle(project: Project, lettering: Lettering, measure: Measure): Block[] {
+  const { nameSize, textSize, textStart } = lettering;
+  if (!project.repositoryLink) {
+    const row = { text: project.name, start: textStart, drop: nameSize * BASELINE_DROP };
+    return [{ kind: "name", size: nameSize, url: project.liveSiteLink, rows: [row] }];
+  }
+  const [nameRow, codeRow] = nameOver(project.name, CODE_WORD, lettering, measure);
+  return [
+    { kind: "name", size: nameSize, url: project.liveSiteLink, rows: [nameRow] },
+    { kind: "code", size: textSize, url: project.repositoryLink, label: `${project.name} ${CODE_WORD}`, rows: [codeRow] },
+  ];
+}
+
+/** Place the owner's name with the tag beneath it. */
+export function stackOwner(ownerMark: OwnerMark, lettering: Lettering, measure: Measure): Block[] {
+  const [nameRow, tagRow] = nameOver(ownerMark.name, ownerMark.tag, lettering, measure);
+  return [
+    { kind: "name", size: lettering.nameSize, rows: [nameRow] },
+    { kind: "tag", size: lettering.textSize, rows: [tagRow] },
+  ];
+}
+
 /** Place the owner's name with the tag beside it, on one line. */
 export function layOutOwner(ownerMark: OwnerMark, lettering: Lettering, measure: Measure): Block[] {
   const { nameSize, textSize, textStart } = lettering;

@@ -81,6 +81,10 @@ One large whale's rib lies low in the sea floor at the lower right, its wide end
 
 Painted mounds, angled and uneven. The weed sways very slowly, each clump at its own rate.
 
+## Tall composition
+
+Phones and other tall screens get the same pieces, re-arranged and stripped back. The body, upside down, fills the top quarter, with one giant eye right of centre and three tattoos: the tears, the upside-down cross, and *GitHub*. Five arms cross the screen from the left; the third stops short. Each carries only its name, with *(code)* beneath for a public repository, set nearer the left on some arms and the right on others. Four fish swim between the third and fourth arms. The rib curves up across the bottom, with the name and the tag beneath it; one clump of weed rises over its far end.
+
 ## Open choices
 
 - Whether the diver appears in the scene.

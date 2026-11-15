@@ -35,7 +35,7 @@ test("UC-11 with motion off nothing moves and all still reads", async ({ page, b
   expect((await page.screenshot()).equals(staredAt), "the eye moved under the pointer").toBe(true);
 
   // Every name, logline, and link still reads and opens.
-  await expect(page.getByText(ownerMark.name, { exact: true })).toBeVisible();
+  await expect(page.getByText(ownerMark.name, { exact: true }).filter({ visible: true })).toBeVisible();
   await expect(linkTo(page, ownerMark.profileLink)).toBeVisible();
   for (const project of projects) {
     await expect(linkTo(page, project.liveSiteLink)).toHaveText(project.name);

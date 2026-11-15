@@ -15,7 +15,7 @@ export interface MovingPieces {
   readonly water: Water;
 }
 
-/** Move the scene, unless the visitor asked for stillness. */
+/** Move the scene while shown, unless the visitor asked for stillness. */
 export function runScene(scene: Element, pieces: MovingPieces): void {
   const stillness = matchMedia("(prefers-reduced-motion: reduce)");
   const arms = findArms(scene, pieces.arms);
@@ -27,7 +27,9 @@ export function runScene(scene: Element, pieces: MovingPieces): void {
   function animate(time: number): void {
     const elapsed = Math.min(time - lastFrame, LONGEST_STEP);
     lastFrame = time;
-    if (!stillness.matches) {
+    // The screen's shape hides one composition; it rests.
+    const shown = scene.getClientRects().length > 0;
+    if (shown && !stillness.matches) {
       drift(arms, elapsed);
       slideSwarm(swarm, pieces.water, elapsed, Math.random);
       blink(gaze, time, elapsed, Math.random);

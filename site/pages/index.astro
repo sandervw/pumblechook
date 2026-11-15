@@ -1,5 +1,6 @@
 ---
 import { parsePortfolio } from "../../core/portfolio/index.ts";
+import Tall from "../compositions/Tall.astro";
 import Wide from "../compositions/Wide.astro";
 import { PORTFOLIO_CONTENT } from "../content/portfolio.ts";
 
@@ -21,6 +22,7 @@ if (Array.isArray(parsed)) {
   <body>
     <main>
       <Wide portfolio={parsed} />
+      <Tall portfolio={parsed} />
     </main>
   </body>
 </html>

@@ -11,8 +11,8 @@ test("UC-14 with scripts off everything reads and links open", async ({
   await stubOutsideSites(page, baseURL ?? "http://localhost:8787");
   await page.goto("/");
 
-  await expect(page.getByText(ownerMark.name, { exact: true })).toBeVisible();
-  await expect(page.getByText(ownerMark.tag, { exact: true })).toBeVisible();
+  await expect(page.getByText(ownerMark.name, { exact: true }).filter({ visible: true })).toBeVisible();
+  await expect(page.getByText(ownerMark.tag, { exact: true }).filter({ visible: true })).toBeVisible();
   await expect(linkTo(page, ownerMark.profileLink)).toBeVisible();
   for (const project of projects) {
     await expect(linkTo(page, project.liveSiteLink)).toHaveText(project.name);
