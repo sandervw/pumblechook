@@ -10,17 +10,16 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 ## State
 
 - The page prints both compositions, `site/compositions/Wide.astro` and `Tall.astro`; CSS shows the tall one on screens narrower than 9:10, and only the shown one moves. The build prints every piece, name, logline, and link into static HTML; the scripts in `site/scene/` only move them. CI runs every command in `CLAUDE.md`.
-- The CEO signed off the wide scene's look and motion, with every logline always visible, and the tall scene, which shows no loglines. One `mvp` issue remains: 6.
+- The CEO signed off the wide scene's look and motion, with every logline always visible, and the tall scene, which shows no loglines. Every `mvp` issue is closed.
 - The fonts are Grenze Gotisch SemiBold for names, IM Fell DW Pica for sentences, and Yellowtail for tattoos, hosted in `public/fonts/`.
-- The `pumblechook` Worker exists in Cloudflare, with Preview builds on.
-- The wide layout is signed off: a kraken in the upper-left corner, with each project's text running along an arm. See `mockups/wide-wireframe.png` and `mockups/image-spec.md`.
-- The look of the wide scene is signed off in `mockups/cut-paper/`: cut-paper arms and eyes over painted pieces. The art method is in `docs/architecture.md`, section 9. `mockups/painted-pieces/` is the losing draft. The `mockups` entry in `.claude/launch.json` serves the repository; open `/mockups/cut-paper/`. The `site` entry runs `astro dev` on port 4321.
+- The site is live at pumblechook.com, a Custom Domain on the `pumblechook` Worker, with Preview builds on. Redirect rules and proxied `100::` placeholder records send pumblechook.dev, its subdomains, and `www.pumblechook.com` to `https://pumblechook.com/`. Web Analytics injects its beacon automatically. The repository is public: code under MIT (`LICENSE-CODE`), art and wording all rights reserved (`LICENSE`).
+- The scene's pieces and layouts are in `docs/image-spec.md`; the art method is in `docs/architecture.md`, section 9. The `site` entry in `.claude/launch.json` runs `astro dev` on port 4321.
 - `docs/content.md` is signed off, and the reference screenshots are in `docs/reference/`.
 - Image generation spend is approved up to $10 for the look-adjustments batch (body, weed, bone).
 
 ## Next
 
-1. Issue 6, launch. Needs the CEO's yes for the domain, the redirects, and the public repository.
+Nothing is planned. New work starts from the CEO.
 
 ## Parked
 
@@ -40,7 +39,7 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 - Chrome reports a wrong box for an `<a>` inside a `<textPath>`; give every link its own `<text>`.
 - `eslint-plugin-astro` stays at version 1 until the local Node reaches 24.16.
 - `docs/reference/` is gitignored; never commit or copy the book's pages.
-- The `image` skill's model rejects every prompt that names Lane Smith; use the prompt wording in `mockups/image-spec.md`.
+- The `image` skill's model rejects every prompt that names Lane Smith; use the prompt wording in `docs/image-spec.md`.
 - The image model takes our own images as `input_references`. It ignores `background: transparent`: paint each piece on a plain flat white ground and cut it out. It refuses about seven or more requests at once.
 - Chrome paints nothing from defs inside a hidden SVG. Each composition keeps its own defs, and every id starts with the composition's name.
 - `getByText` also finds the hidden composition's words; add `.filter({ visible: true })`.

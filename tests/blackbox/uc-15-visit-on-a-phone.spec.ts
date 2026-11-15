@@ -54,9 +54,8 @@ test("UC-15 tapping a live site link opens it", async ({ page, baseURL }) => {
   const project = projects[2];
   const nameLink = linkTo(page, project.liveSiteLink);
   await expect(nameLink).toHaveText(project.name);
-  // Arms never hold still, so tap where the name is now.
-  const box = await nameLink.boundingBox();
-  if (!box) throw new Error("the name has no box to tap");
-  await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
+  // A visitor taps once the lettering shows; arms never hold still.
+  await page.evaluate(() => document.fonts.ready);
+  await nameLink.tap({ force: true });
   await expect(page).toHaveURL(new URL(project.liveSiteLink).href);
 });

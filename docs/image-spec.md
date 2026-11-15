@@ -1,6 +1,6 @@
 # Image spec
 
-The one scene every mockup builds. The CEO has signed off the wide layout in `mockups/wide-wireframe.png`. The CEO has signed off the look in `mockups/cut-paper/`.
+The one scene the site paints, in a wide and a tall composition. The CEO has signed off both.
 
 ## Style: Lane Smith
 
