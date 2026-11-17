@@ -10,7 +10,7 @@ Words used here: the **scene** is the whole picture; the **creature** is its cen
 
 | Area | File | UC IDs |
 |---|---|---|
-| Visiting | [visiting.md](visiting.md) | UC-01 to UC-08 |
+| Visiting | [visiting.md](visiting.md) | UC-01 to UC-08, UC-17 |
 | Motion | [motion.md](motion.md) | UC-09 to UC-11, UC-16 |
 | Access | [access.md](access.md) | UC-12 to UC-15 |
 
