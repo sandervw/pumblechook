@@ -15,3 +15,5 @@
 **UC-07 Open an unknown address.** Steps: open the site with any extra path, such as `/squid`. Expected: the scene appears, the same as at the root address.
 
 **UC-08 Arrive by the other domains.** Steps: open `pumblechook.dev`; open `pumblechook.dev/anything`; open `www.pumblechook.com`. Expected: each lands on `https://pumblechook.com` and shows the scene.
+
+**UC-17 Read the crawler files.** Steps: open `/robots.txt`; open `/sitemap.xml`. Expected: `/robots.txt` comes back as plain text that lets every crawler in and names `https://pumblechook.com/sitemap.xml`; `/sitemap.xml` comes back as XML listing `https://pumblechook.com/` and nothing else.
