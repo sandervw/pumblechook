@@ -46,7 +46,7 @@ No database and no visitor data. Words and art are files in git.
 
 ## 5. Interfaces
 
-- `GET /` returns the scene. Any other path returns the same page.
+- `GET /` returns the scene. `/robots.txt` and `/sitemap.xml` return the crawler files. Any other path returns the same page.
 - Every link opens in the same tab.
 - With `prefers-reduced-motion: reduce`, nothing moves.
 - `public/_headers` sets a Content Security Policy allowing the site's own files and the analytics beacon.
@@ -63,7 +63,7 @@ site/                  Astro source folder
   compositions/        Wide.astro, Tall.astro, their layouts and text rows
   scene/               limb shapes, motion scripts, and the scene's styles
   art/                 texture sheets and painted pieces
-public/                _headers, fonts, icons
+public/                _headers, fonts, icons, robots.txt, sitemap.xml
 tests/blackbox/        Playwright specs
 tests/unit/            portfolio rule checks
 tests/integration/     link checks
