@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "@playwright/test": "^1.65.0",
+    "@playwright/test": "^1.65.1",
     "@types/fontkit": "^2.0.9",
     "@types/node": "^24.19.2",
     "astro": "^7.4.11",
