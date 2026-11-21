@@ -1,8 +1,15 @@
 ---
 import { parsePortfolio } from "../../core/portfolio/index.ts";
+import background from "../art/background.jpg";
 import Tall from "../compositions/Tall.astro";
 import Wide from "../compositions/Wide.astro";
 import { PORTFOLIO_CONTENT } from "../content/portfolio.ts";
+
+// The fonts both compositions letter with.
+const FONTS = ["grenze-gotisch-latin-600-normal", "im-fell-dw-pica-latin-400-italic", "yellowtail-latin-400-normal"];
+// Loglines use the upright face, and only the wide composition prints them.
+const LOGLINE_FONT = "im-fell-dw-pica-latin-400-normal";
+const WIDE_SCREEN = "not all and (max-aspect-ratio: 9/10)";
 
 const parsed = parsePortfolio(PORTFOLIO_CONTENT);
 if (Array.isArray(parsed)) {
@@ -18,7 +25,10 @@ if (Array.isArray(parsed)) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pumblechook</title>
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <!-- The water and the lettering are fetched first; the other pieces follow. -->
+    <link rel="preload" as="image" href={background.src} fetchpriority="high" />
+    {FONTS.map((font) => <link rel="preload" as="font" type="font/woff2" href={`/fonts/${font}.woff2`} crossorigin />)}
+    <link rel="preload" as="font" type="font/woff2" href={`/fonts/${LOGLINE_FONT}.woff2`} crossorigin media={WIDE_SCREEN} />
   </head>
   <body>
     <main>
