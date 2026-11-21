@@ -13,7 +13,7 @@ Current state and next work. Rewrite this file (`.claude/skills/handoff/SKILL.md
 - The CEO signed off the wide scene's look and motion, with every logline always visible, and the tall scene, which shows no loglines. Every `mvp` issue is closed.
 - The fonts are Grenze Gotisch SemiBold for names, IM Fell DW Pica for sentences, and Yellowtail for tattoos, hosted in `public/fonts/`.
 - The site is live at pumblechook.com, a Custom Domain on the `pumblechook` Worker, with Preview builds on. Redirect rules and proxied `100::` placeholder records send pumblechook.dev, its subdomains, and `www.pumblechook.com` to `https://pumblechook.com/`. Web Analytics injects its beacon automatically. The repository is public: code under MIT (`LICENSE-CODE`), art and wording all rights reserved (`LICENSE`).
-- The scene's pieces and layouts are in `docs/image-spec.md`; the art method is in `docs/architecture.md`, section 9. The `site` entry in `.claude/launch.json` runs `astro dev` on port 4321.
+- The scene's pieces and layouts are in `docs/image-spec.md`; the art method is in `docs/architecture.md`, section 9. In `.claude/launch.json`, `site` runs `astro dev` on port 4321 and `built` runs `npm run preview` on port 8787.
 - `docs/content.md` is signed off, and the reference screenshots are in `docs/reference/`.
 - Image generation spend is approved up to $10 for the look-adjustments batch (body, weed, bone).
 
@@ -33,6 +33,7 @@ Nothing is planned. New work starts from the CEO.
 - `.claude/hooks/trim_docs.py` blocks the first commit of any changed Markdown; reread the named docs, then commit again.
 - An unquoted `: ` in an agent `description` breaks loading. Agent, skill, and hook changes need a session restart.
 - The blackbox-tester can run only what `.claude/project.json` allows. Escape backslashes in its `safeFlags` regexes as `\\`. In a worktree it can neither write specs nor report; run it from the main checkout.
+- A missing path under `/_astro/` or `/fonts/` answers with the page and carries their week-long cache header; keep that lifetime short.
 - `npm run preview` runs `wrangler dev` on port 8787. It serves nothing after `npm run build` empties `dist/`; restart it after every build.
 - The Browser pane pauses all motion while hidden; check motion with a Playwright script instead.
 - Arms never hold still, so Playwright's `hover()` and `click()` stall on an arm's link. Reach the arm first with the helper in `tests/blackbox/support/visitor.ts`.

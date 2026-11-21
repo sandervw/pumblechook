@@ -5,3 +5,10 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Cross-Origin-Opener-Policy: same-origin
+
+# Art, scripts, and fonts keep for a week. No longer: a missing path answers with the page, and a browser would keep that too.
+/_astro/*
+  Cache-Control: public, max-age=604800
+
+/fonts/*
+  Cache-Control: public, max-age=604800

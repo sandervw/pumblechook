@@ -50,6 +50,8 @@ No database and no visitor data. Words and art are files in git.
 - Every link opens in the same tab.
 - With `prefers-reduced-motion: reduce`, nothing moves.
 - `public/_headers` sets a Content Security Policy allowing the site's own files and the analytics beacon.
+- `public/_headers` lets a browser keep art, scripts, and fonts for a week. The page itself is checked on every visit.
+- The page preloads the background and the fonts.
 
 ## 6. Folder layout
 
