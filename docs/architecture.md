@@ -27,7 +27,7 @@ A shell calls contexts in turn and passes plain values; it makes no rule of its 
 
 - **Build:** `site/content/portfolio.ts` holds the words and links from the content sheet. The page passes them to `parsePortfolio`; a broken rule fails the build. Astro prints `dist/`.
 - **Deploy:** Workers Builds builds every push. `main` deploys to pumblechook.com; every other branch gets a Preview.
-- **Visit:** the browser loads the page and the art for its composition. Every link is an anchor in the HTML. Scene scripts then start the motion.
+- **Visit:** the browser loads the page and the art of both compositions. Every link is an anchor in the HTML. Scene scripts then start the motion.
 - **Redirect:** redirect rules send every pumblechook.dev URL and `www.pumblechook.com` to `https://pumblechook.com`.
 - **Analytics:** Cloudflare Web Analytics counts visits.
 
@@ -81,7 +81,7 @@ tests/integration/     link checks
 ## 8. Risks
 
 - **Agents cannot judge the look.** Art, motion, and wording wait on their branch for the CEO's yes on the Preview.
-- **Painted art is heavy.** Each composition loads only its own art; the first load stays under 2 MB.
+- **Painted art is heavy.** A browser fetches both compositions' art; the first load stays under 2 MB.
 - **Likeness to the reference book.** No page, character, or composition is copied, traced, or given to an image model.
 
 ## 9. Art method
